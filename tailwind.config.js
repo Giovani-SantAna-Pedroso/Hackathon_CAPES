@@ -12,6 +12,8 @@ module.exports = {
         gray2: "#d9d9d9",
         lightBlack: "1E1E1E",
         blue1: "#0093D9",
+        blue2: "#002C65",
+        blue3: "#4984D6",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
