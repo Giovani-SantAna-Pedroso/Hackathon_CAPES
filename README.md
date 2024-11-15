@@ -1,4 +1,4 @@
-# Hackathon Periodicos CAPES
+# a Hackathon Periodicos CAPES
 
 # Instalação
 
