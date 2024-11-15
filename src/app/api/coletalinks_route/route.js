@@ -2,7 +2,7 @@ const axios = require('axios');
 const fs = require('fs');
 const url = 'https://converte-textoparaaudio-1.onrender.com/synthesize'; 
 
-import { ColetaLinkDeSite, VAlidaTexto } from "@/Context/Context";
+import { ColetaLinkDeSite } from "@/Context/Context";
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
@@ -11,20 +11,16 @@ export const GET = async () => {
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   const result = await model.generateContent([ColetaLinkDeSite]);
   const linkColetado = result.response.text();
+  synthesizeText("ola") 
 
 
-  Validador(linkColetado)
   return Response.json({ msg: linkColetado }, { status: 200 });
 };
 
- async function Validador(itemResposta){
-  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-  const resultadoValidado = await model.generateContent([VAlidaTexto+  itemResposta]);
-  const resposta = result.response.text();
-  synthesizeText(resultadoValidado) 
-};
-W
+
+
+
+
 
 
 
