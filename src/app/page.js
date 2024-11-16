@@ -3,41 +3,46 @@ import Hero from "./Hero";
 import { Poppins } from "next/font/google";
 
 const poppins = Poppins({
-  subsets: ["latin"], // Adjust subsets as needed
-  weight: ["400", "800", "900", "700"], // Add desired weights
+  subsets: ["latin"],
+  weight: ["400", "700", "800", "900"],
 });
 
 export default function Home() {
   return (
     <div
-      className={
-        poppins.className + " min-h-screen bg-gray2 text-lightBlack px-8 pt-4"
-      }
+      className={`${poppins.className} min-h-screen bg-gray-50 text-gray-800 px-6 lg:px-12 pt-8`}
     >
+      {/* Hero Section */}
       <Hero />
 
-      <div className="flex mt-8 justify-between">
-        <div className="max-w-[40%]">
-          <h1 className="text-blue1 font-extrabold text-[40px] mb-8">
-            Lorem ipsum
+      {/* Content Section */}
+      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10 lg:gap-20 mt-12 lg:mt-16 ">
+        {/* Text Section */}
+        <div className="lg:w-2/5">
+          <h1 className="text-blue-600 font-extrabold text-3xl lg:text-5xl leading-tight mb-6">
+            Lorem Ipsum
           </h1>
-          <p>
+          <p className="text-lg leading-relaxed text-gray-700">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry&aposs standard dummy
             text ever since the 1500s, when an unknown printer took a galley of
-            type and scrambled it to make
+            type and scrambled it to make.
           </p>
         </div>
-        <div>
+
+        {/* Image Section */}
+        <div className="lg:w-3/5 flex justify-end mb-10">
           <Image
-            className="rounded"
+            className="rounded-lg shadow-lg"
             src="/placeholder1.png"
-            alt="placeholder1"
-            width={400}
-            height={400}
+            alt="Placeholder image"
+            width={500}
+            height={500}
           />
         </div>
       </div>
+
+     
     </div>
   );
 }
