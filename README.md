@@ -21,3 +21,5 @@ GEMINI_API_KEY="Sua_Api_key"
 - Rafael Vieira - Cargo [LinkedIn](https://www.linkedin.com/in/rafaelrvs/) [Github](https://github.com/rafaelrvs)
 - Rafael Ricardo (TARUG) - Cargo [LinkedIn](https://www.linkedin.com/in/tarug/) [Github](#)
 - Pedro Garcia - Cargo [LinkedIn](https://www.linkedin.com/in/pedro-garcia-6837a7266/) [Github](https://github.com/PedroGS13876)
+
+aaaaaaaaa
