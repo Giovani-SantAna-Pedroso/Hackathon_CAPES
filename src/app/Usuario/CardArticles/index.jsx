@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-function CardArticle({ id, img, conteudo, audioSrc = "", title = "Título do Artigo" }) {
+function CardArticle({ id, img, conteudo, audioSrc, title = "Título do Artigo" }) {
   return (
     <div className="flex flex-col md:flex-row bg-gray-800 text-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 w-full">
       {/* Imagem */}

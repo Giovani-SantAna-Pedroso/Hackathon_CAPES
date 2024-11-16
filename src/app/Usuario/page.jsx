@@ -1,4 +1,4 @@
-import React from "react";
+'use client'
 import { IoHomeOutline } from "react-icons/io5";
 import { MdHistory } from "react-icons/md";
 import { TbClick } from "react-icons/tb";
@@ -6,8 +6,19 @@ import { IoPersonOutline } from "react-icons/io5";
 import Link from "next/link";
 import ContainerArticles from "./ContainerArticles";
 import CardArticle from "./CardArticles";
+import { useEffect, useState } from "react";
+import { synthesizeText } from "../api/synthesize/routes";
+
 
 function Usuario() {
+  const [contentArticle, setContentArticle] = useState([{
+      img: "",
+      id: 0,
+      description: "",
+  }])
+
+
+
   const usuario = "Kleber";
   const itemNavegation = [
     { name: "Home", link: "#", icon: <IoHomeOutline /> },
@@ -39,6 +50,40 @@ function Usuario() {
     },
   ];
 
+  useEffect(() => {
+    const newArticles = articlesLendo.map((item) => ({
+      id: item.id,
+      description: item.description,
+    }));
+  
+    setContentArticle(newArticles);
+
+    handleSynthesizeAudio('Olá, esse é um exemplo de áudio sintetizado!');
+ 
+  }, []);
+
+  async function handleSynthesizeAudio(text) {
+    try {
+      const response = await fetch('http://127.0.0.1:5000/synthesize/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ text }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Erro ao gerar áudio');
+      }
+  
+      const data = await response.json();
+      console.log('Áudio gerado:', data.path);
+    } catch (error) {
+      console.error('Erro ao fazer a requisição:', error.message);
+    }
+  }
+
+  
   return (
     <div className="min-h-screen bg-gradient-to-r from-gray-100 via-blue-50 to-gray-200 px-8 py-6">
       <h1 className="text-blue-600 font-extrabold text-5xl text-center py-8">
@@ -66,9 +111,11 @@ function Usuario() {
           <ContainerArticles>
             {articlesLendo.map((article) => (
               <div key={article.id} className="my-6">
+              
                 <CardArticle
                   id={article.id}
                   conteudo={article.description}
+                  audioSrc={`public/audio/${article.id}audio.mp3`}
                   img={article.img}
                 />
               </div>
