@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Hero from "./Hero";
 import { Poppins } from "next/font/google";
+import ChatBot from "./components/ChatBot";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -39,6 +40,10 @@ export default function Home() {
             width={500}
             height={500}
           />
+        </div>
+
+        <div>
+          <ChatBot/>
         </div>
       </div>
 
