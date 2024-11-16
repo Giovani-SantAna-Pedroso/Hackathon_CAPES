@@ -1,7 +1,43 @@
+import { urlTSS } from "@/app/utils/urls";
+import axios from "axios";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
-function CardArticle({ id, img, conteudo, audioSrc, title = "Título do Artigo" }) {
+function CardArticle({
+  id,
+  img,
+  conteudo,
+  // audioSrc,
+  title = "Título do Artigo",
+}) {
+  const [audioSrc, setAudioSrc] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleButton = async () => {
+    setIsLoading(true);
+    console.log("fdsa");
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:5000/synthesize",
+        { text: conteudo },
+        {
+          responseType: "blob",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+      const audioURL = URL.createObjectURL(response.data);
+      setAudioSrc(audioURL);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const handleTestButton = () => {
+    console.log("test");
+    console.log(conteudo);
+  };
+
   return (
     <div className="flex flex-col md:flex-row bg-gray-800 text-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 w-full">
       {/* Imagem */}
@@ -31,14 +67,20 @@ function CardArticle({ id, img, conteudo, audioSrc, title = "Título do Artigo" 
         </div>
 
         {/* Player de áudio */}
-        {audioSrc && (
-          <div className="mt-4">
-            <p className="text-gray-400 text-xs mb-1">Ouça o conteúdo:</p>
-            <audio controls src={audioSrc} className="w-full rounded">
+
+        {/* {audioSrc && ( */}
+        <div className="mt-4">
+          {audioSrc ? (
+            <audio controls>
+              <source src={audioSrc} type="audio/mpeg" />
               Seu navegador não suporta o elemento de áudio.
             </audio>
-          </div>
-        )}
+          ) : (
+            <button onClick={handleButton} className="btn btn-primary">
+              {!isLoading ? "Escutar audio" : "Carregando..."}
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
