@@ -37,7 +37,7 @@ function Navbar() {
       {/* Botão */}
       <div>
         <button className="text-white bg-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200">
-         <Link href={"/Usuario"}>Acessar meu CAPES</Link>
+        <Link href={"/Usuario"}>Acessar meu CAPES</Link>
         </button>
       </div>
     </div>
