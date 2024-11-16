@@ -11,19 +11,18 @@ const poppins = Poppins({
 export default function Home() {
   return (
     <div
-      className={`${poppins.className} min-h-screen bg-gray-50 text-gray-800 px-6 lg:px-12 pt-8`}
+      className={`${poppins.className} min-h-screen bg-gray-50 text-gray-800 px-4 sm:px-6 lg:px-12 pt-8`}
     >
-      {/* Hero Section */}
       <Hero />
 
       {/* Content Section */}
-      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10 lg:gap-20 mt-12 lg:mt-16 ">
+      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 sm:gap-10 lg:gap-20 mt-8 sm:mt-12 lg:mt-16">
         {/* Text Section */}
-        <div className="lg:w-2/5">
-          <h1 className="text-blue-600 font-extrabold text-3xl lg:text-5xl leading-tight mb-6">
+        <div className="w-full lg:w-2/5 text-center lg:text-left">
+          <h1 className="text-blue-600 font-extrabold text-2xl sm:text-3xl lg:text-5xl leading-tight mb-4 sm:mb-6">
             Lorem Ipsum
           </h1>
-          <p className="text-lg leading-relaxed text-gray-700">
+          <p className="text-base sm:text-lg leading-relaxed text-gray-700">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry&aposs standard dummy
             text ever since the 1500s, when an unknown printer took a galley of
@@ -32,9 +31,9 @@ export default function Home() {
         </div>
 
         {/* Image Section */}
-        <div className="lg:w-3/5 flex justify-end mb-10">
+        <div className="w-full lg:w-3/5 flex justify-center lg:justify-end mb-6 lg:mb-0">
           <Image
-            className="rounded-lg shadow-lg"
+            className="rounded-lg shadow-lg max-w-full"
             src="/placeholder1.png"
             alt="Placeholder image"
             width={500}
@@ -42,7 +41,8 @@ export default function Home() {
           />
         </div>
 
-        <div>
+        {/* ChatBot Section */}
+        <div className="w-full mt-6 lg:mt-0">
           <ChatBot />
         </div>
       </div>
