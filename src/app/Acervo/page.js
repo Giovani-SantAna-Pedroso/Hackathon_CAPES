@@ -15,7 +15,7 @@ const Page = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container-acervo  w-full">
       {/* Filtro lateral */}
       <aside className="filter-panel">
         <div className="filter-section">
@@ -84,7 +84,7 @@ const Page = () => {
 
       {/* Conteúdo Principal */}
       <main className="main-content">
-        <h1 className="main-title">Lista de bases e coleções</h1>
+        <h1 className="main-title text-blue2">Lista de bases e coleções</h1>
 
         {/* Busca */}
         <div className="search-container">

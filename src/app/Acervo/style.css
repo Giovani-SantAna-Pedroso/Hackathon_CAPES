@@ -1,190 +1,195 @@
 /* Estilos Gerais */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
 }
 
-.container {
-    display: flex;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+.container-acervo {
+  display: flex;
+  /* max-width: 1200px; */
+  margin: 0 auto;
+  padding: 20px 80px;
+  background-color: #f1f5fb;
 }
 
 .main-content {
-    flex-grow: 1;
-    margin-left: 20px;
+  flex-grow: 1;
+  margin-left: 20px;
 }
 
 .main-title {
-    font-size: 24px;
-    color: #fff;
-    text-align: center;
+  font-size: 24px;
+  color: #0093d9;
+  text-align: center;
 }
 
 /* Filtro Lateral */
 .filter-panel {
-    width: 250px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
+  width: 250px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
 }
 
 .lb-radio {
-    display: flex;
-    gap: 5px;
-    width: 100%;
+  display: flex;
+  gap: 5px;
+  width: 100%;
 }
 
 .lb-radio input[type="checkbox"] {
-    appearance: none; /* Remove o estilo padrão do navegador */
-    width: 20px;
-    height: 20px;
-    border: 2px solid;
-    border-radius: 50%; /* Torna o checkbox redondo */
-    outline: none;
-    cursor: pointer;
-    background-color: white;
-    transition: background-color 0.2s, border-color 0.2s;
+  appearance: none; /* Remove o estilo padrão do navegador */
+  width: 20px;
+  height: 20px;
+  border: 2px solid;
+  border-radius: 50%; /* Torna o checkbox redondo */
+  outline: none;
+  cursor: pointer;
+  background-color: white;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
 }
 
 .lb-radio input[type="checkbox"]:checked {
-    background-color: #007bff;
-    border-color: #0056b3;
+  background-color: #007bff;
+  border-color: #0056b3;
 }
 
 .filter-section {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .filter-title {
-    font-size: 16px;
-    color: #ff6600;
-    margin: 10px 0;
+  font-size: 16px;
+  color: #ff6600;
+  margin: 10px 0;
 }
 
 label {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
 }
 
 .count {
-    margin-left: 5px;
-    color: #666;
+  margin-left: 5px;
+  color: #666;
 }
 
 .show-more {
-    color: #007bff;
-    cursor: pointer;
-    font-size: 14px;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 /* Botão Filtrar */
 .filter-section button {
-    display: block; /* Garante que ele ocupe toda a linha */
-    margin: 20px 0 0; /* Espaço acima do botão */
-    padding: 5px;
-    width: 100%;
-    background-color: #ff6600; /* Cor laranja */
-    color: white; /* Cor do texto */
-    border: none;
-    border-radius: 5px; /* Cantos arredondados */
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    transition: background-color 0.3s; /* Efeito de transição */
+  display: block; /* Garante que ele ocupe toda a linha */
+  margin: 20px 0 0; /* Espaço acima do botão */
+  padding: 5px;
+  width: 100%;
+  background-color: #ff6600; /* Cor laranja */
+  color: white; /* Cor do texto */
+  border: none;
+  border-radius: 5px; /* Cantos arredondados */
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s; /* Efeito de transição */
 }
 
 .filter-section button:hover {
-    background-color: #e55500; /* Cor laranja escura ao passar o mouse */
+  background-color: #e55500; /* Cor laranja escura ao passar o mouse */
 }
 
 /* Linha separadora antes do botão */
 .filter-section hr {
-    border: none; /* Remove o estilo padrão */
-    border-top: 1px solid #ddd; /* Define uma linha superior */
-    margin: 10px 0; /* Espaço acima e abaixo */
+  border: none; /* Remove o estilo padrão */
+  border-top: 1px solid #ddd; /* Define uma linha superior */
+  margin: 10px 0; /* Espaço acima e abaixo */
 }
 
 /* Busca */
 .search-container {
-    display: flex;
-    gap: 10px;
-    margin: 20px 0;
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
 }
 
 .search-input {
-    flex-grow: 1;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 .search-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 /* Listagem de Coleções */
 .collections-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .collection-item {
-    background-color: white;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+  background-color: white;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 .collection-title {
-    font-size: 18px;
-    color: #007bff;
+  font-size: 18px;
+  color: #007bff;
 }
 
 .collection-link {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 /* Paginação */
 .pagination {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-    gap: 10px;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 10px;
 }
 
 .page-button {
-    padding: 10px;
-    border: 1px solid #007bff;
-    color: #007bff;
-    background-color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.2s, color 0.2s;
+  padding: 10px;
+  border: 1px solid #007bff;
+  color: #007bff;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 }
 
 .page-button:hover {
-    background-color: #007bff;
-    color: white;
+  background-color: #007bff;
+  color: white;
 }
 
 .page-button.active {
-    background-color: #007bff;
-    color: white;
-    border-color: #0056b3;
+  background-color: #007bff;
+  color: white;
+  border-color: #0056b3;
 }
