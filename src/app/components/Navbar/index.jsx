@@ -28,7 +28,10 @@ function Navbar() {
       {/* Links */}
       <ol className="flex gap-6">
         {links.map((link) => (
-          <li key={link.name} className="text-gray-700 hover:text-blue-600 transition-colors duration-200">
+          <li
+            key={link.name}
+            className="text-gray-700 hover:text-blue-600 transition-colors duration-200"
+          >
             <Link href={link.url}>{link.name}</Link>
           </li>
         ))}
@@ -36,9 +39,9 @@ function Navbar() {
 
       {/* Botão */}
       <div>
-        <button className="text-white bg-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200">
-        <Link href={"/Usuario"}>Acessar meu CAPES</Link>
-        </button>
+        {/* <button className="text-white bg-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200"> */}
+        {/* <Link href={"/Usuario"}>Acessar meu CAPES</Link> */}
+        {/* </button> */}
       </div>
     </div>
   );

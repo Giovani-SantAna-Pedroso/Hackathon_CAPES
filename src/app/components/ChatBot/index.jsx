@@ -1,10 +1,13 @@
-'use client';
-import React, { useState, useEffect, useRef } from 'react';
+"use client";
+import React, { useState, useEffect, useRef } from "react";
+
+const URL_AI = "http://localhost:3000/api/ai/gemini/sendChatAText";
+// const URL_AI = "http://localhost:3000/api/coletalinks_route";
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
 
@@ -20,9 +23,7 @@ const ChatBot = () => {
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       setTimeout(() => {
-        setMessages([
-          { type: 'bot', text: 'Olá, como posso ajudar?' },
-        ]);
+        setMessages([{ type: "bot", text: "Olá, como posso ajudar?" }]);
       }, 1000);
     }
   }, [isOpen]);
@@ -30,25 +31,25 @@ const ChatBot = () => {
   const handleSendMessage = async (e) => {
     e.preventDefault();
 
-    if (text.trim() === '') {
-      console.warn('Mensagem vazia não será enviada.');
+    if (text.trim() === "") {
+      console.warn("Mensagem vazia não será enviada.");
       return;
     }
 
-    console.log('Mensagem enviada pelo usuário:', text);
+    console.log("Mensagem enviada pelo usuário:", text);
 
     // Adiciona a mensagem do usuário à lista
-    setMessages((prev) => [...prev, { type: 'user', text }]);
+    setMessages((prev) => [...prev, { type: "user", text }]);
 
     // Reseta o campo de entrada
-    setText('');
+    setText("");
     setIsTyping(true);
 
     try {
-      const response = await fetch('http://localhost:3000/api/coletalinks_route', {
-        method: 'POST',
+      const response = await fetch(URL_AI, {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           message: text,
@@ -56,28 +57,37 @@ const ChatBot = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Erro ao processar a solicitação');
+        throw new Error("Erro ao processar a solicitação");
       }
 
       const data = await response.json();
+      console.log(data);
 
       if (data && data.response) {
         const botResponse = data.response;
-        console.log('Resposta do bot:', botResponse);
+        console.log("Resposta do bot:", botResponse);
 
-        setMessages((prev) => [...prev, { type: 'bot', text: botResponse }]);
+        setMessages((prev) => [...prev, { type: "bot", text: botResponse }]);
+
+        setMessages((prev) => [...prev, { type: "bot", text: botResponse }]);
       } else {
-        console.error('Resposta inválida do backend:', data);
+        console.error("Resposta inválida do backend:", data);
         setMessages((prev) => [
           ...prev,
-          { type: 'bot', text: 'Desculpe, não consegui processar sua solicitação.' },
+          {
+            type: "bot",
+            text: "Desculpe, não consegui processar sua solicitação.",
+          },
         ]);
       }
     } catch (error) {
-      console.error('Erro ao obter resposta do bot:', error);
+      console.error("Erro ao obter resposta do bot:", error);
       setMessages((prev) => [
         ...prev,
-        { type: 'bot', text: 'Desculpe, algo deu errado ao processar sua solicitação.' },
+        {
+          type: "bot",
+          text: "Desculpe, algo deu errado ao processar sua solicitação.",
+        },
       ]);
     } finally {
       setIsTyping(false);
@@ -86,14 +96,16 @@ const ChatBot = () => {
 
   // Rola automaticamente para a última mensagem
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   return (
     <div>
       <div
         className={`fixed bottom-10 right-10 bg-blue-500 text-white rounded-lg shadow-lg cursor-pointer transition-all duration-300 ${
-          isOpen ? 'w-[400px] h-[500px]' : 'w-[50px] h-[50px] flex items-center justify-center'
+          isOpen
+            ? "w-[400px] h-[500px]"
+            : "w-[50px] h-[50px] flex items-center justify-center"
         }`}
         onClick={!isOpen ? toggleChat : undefined}
       >
@@ -116,7 +128,9 @@ const ChatBot = () => {
                 <p
                   key={index}
                   className={`mb-2 p-2 rounded-lg text-black ${
-                    message.type === 'user' ? 'bg-blue-200 text-right' : 'bg-gray-300 text-left'
+                    message.type === "user"
+                      ? "bg-blue-200 text-right"
+                      : "bg-gray-300 text-left"
                   }`}
                 >
                   {message.text}
@@ -127,7 +141,10 @@ const ChatBot = () => {
               <div ref={messagesEndRef} />
             </div>
 
-            <form onSubmit={handleSendMessage} className="mt-4 flex items-center">
+            <form
+              onSubmit={handleSendMessage}
+              className="mt-4 flex items-center"
+            >
               <input
                 type="text"
                 placeholder="Digite sua mensagem..."

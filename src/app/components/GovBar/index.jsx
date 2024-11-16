@@ -1,9 +1,19 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+import ModalLogin from "../ModalLogin";
 
 const BarraGovBr = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleEntrar = () => {
+    setShowModal(true);
+  };
+
   return (
     <div className="bg-white">
+      {showModal && <ModalLogin setShowModal={setShowModal} />}
       <div className="container mx-auto">
         <div className="flex items-center justify-between py-2">
           {/* Logo e Nome do Órgão */}
@@ -82,14 +92,12 @@ const BarraGovBr = () => {
 
               {/* Botão de Entrar */}
               <li>
-                <a
-                  href="https://acesso.gov.br"
-                  target="_blank"
+                <button
+                  onClick={handleEntrar}
                   className="bg-blue-600 text-white py-2 px-4 text-sm rounded-sm hover:bg-blue-700 flex items-center space-x-2"
                 >
-                  <i className="fas fa-user"></i>
                   <span>Entrar</span>
-                </a>
+                </button>
               </li>
             </ul>
           </nav>
