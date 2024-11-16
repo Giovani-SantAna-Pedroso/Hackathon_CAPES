@@ -5,9 +5,9 @@ import React from "react";
 function Navbar() {
   const links = [
     { name: "Sobre", url: "/Sobre" },
-    { name: "Acervo", url: "#" },
-    { name: "Treinamentos", url: "#" },
-    { name: "Informativos", url: "#" },
+    { name: "Acervo", url: "/Acervo" },
+    { name: "Treinamentos", url: "/Treinamento" },
+    { name: "Informativos", url: "Informativos" },
   ];
 
   return (
