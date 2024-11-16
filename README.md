@@ -22,4 +22,13 @@ GEMINI_API_KEY="Sua_Api_key"
 - Rafael Ricardo (TARUG) - Cargo [LinkedIn](https://www.linkedin.com/in/tarug/) [Github](#)
 - Pedro Garcia - Cargo [LinkedIn](https://www.linkedin.com/in/pedro-garcia-6837a7266/) [Github](https://github.com/PedroGS13876)
 
-aaaaaaaaa
+Notas mentoria Tamires Costa:
+
+necessidades:
+
+Apresentar o protal
+Alunos tem dificuldes para saber oque acessar Como funciona
+Falta de treinamento na plataforma
+Dificuldade de acesso - por causa do IP
+Treinamento
+O Download é esencial
