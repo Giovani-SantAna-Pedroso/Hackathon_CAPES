@@ -1,0 +1,137 @@
+    /* Estilos Gerais */
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+    }
+    
+    .container {
+        display: flex;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .main-content {
+        flex-grow: 1;
+        margin-left: 20px;
+    }
+    
+    .main-title {
+        font-size: 24px;
+        color: #333;
+        text-align: center;
+    }
+    
+    /* Filtro Lateral */
+    .filter-panel {
+        width: 250px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+    
+    .filter-section {
+        margin-bottom: 15px;
+    }
+    
+    .filter-title {
+        font-size: 16px;
+        color: #ff6600;
+        margin: 10px 0;
+    }
+    
+    label {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+    
+    .count {
+        margin-left: 5px;
+        color: #666;
+    }
+    
+    .show-more {
+        color: #007bff;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    
+    /* Busca */
+    .search-container {
+        display: flex;
+        gap: 10px;
+        margin: 20px 0;
+    }
+    
+    .search-input {
+        flex-grow: 1;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    
+    .search-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    /* Listagem de Coleções */
+    .collections-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .collection-item {
+        background-color: white;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    
+    .collection-title {
+        font-size: 18px;
+        color: #007bff;
+    }
+    
+    .collection-link {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    
+    /* Paginação */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+        gap: 10px;
+    }
+    
+    .page-button {
+        padding: 10px;
+        border: 1px solid #007bff;
+        color: #007bff;
+        background-color: white;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    
+    /* Rodapé */
+    .footer {
+        text-align: center;
+        background-color: #007bff;
+        color: white;
+        padding: 10px 0;
+        margin-top: 20px;
+    }
+    
