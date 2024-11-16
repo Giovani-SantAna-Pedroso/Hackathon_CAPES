@@ -1,4 +1,5 @@
 "use client";
+import { IoPerson } from "react-icons/io5";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
@@ -94,8 +95,9 @@ const BarraGovBr = () => {
               <li>
                 <button
                   onClick={handleEntrar}
-                  className="bg-blue-600 text-white py-2 px-4 text-sm rounded-sm hover:bg-blue-700 flex items-center space-x-2"
+                  className=" bg-blue-[##f8f8f8] text-[#1351b4] py-2 px-4 text-sm rounded-full hover:text-[#f8f8f8] hover:bg-[#1351b4] flex items-center space-x-2"
                 >
+                  <IoPerson />
                   <span>Entrar</span>
                 </button>
               </li>

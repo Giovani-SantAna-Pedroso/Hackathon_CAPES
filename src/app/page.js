@@ -43,11 +43,9 @@ export default function Home() {
         </div>
 
         <div>
-          <ChatBot/>
+          <ChatBot />
         </div>
       </div>
-
-     
     </div>
   );
 }
