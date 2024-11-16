@@ -61,7 +61,12 @@ function Hero() {
           Pesquisa Avançada {showAdvancedSearch ? <ArrowUp /> : <ArrowDown />}
         </button>
 
-        {showAdvancedSearch ? <AdvancedSearch /> : null}
+        {showAdvancedSearch ? (
+          <AdvancedSearch
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+          />
+        ) : null}
       </div>
     </div>
   );
