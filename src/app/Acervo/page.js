@@ -1,15 +1,20 @@
 'use client';
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation"; // useRouter e useSearchParams
 import { FaLockOpen, FaDownload, FaStar } from "react-icons/fa"; // React Icons
 
 const Acervo = () => {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const query = searchParams.get("query");
   const [collections, setCollections] = useState([]);
+  const [filteredCollections, setFilteredCollections] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [favorites, setFavorites] = useState([]); // Estado para armazenar favoritos
+  const [searchFilter, setSearchFilter] = useState(query || ""); // Filtro de pesquisa
+  const [currentPage, setCurrentPage] = useState(1); // Página atual
+  const itemsPerPage = 5; // Número de artigos por página
 
   // Função para carregar os favoritos do localStorage
   const carregarFavoritos = () => {
@@ -30,53 +35,93 @@ const Acervo = () => {
     });
   };
 
+  // Função para pegar os artigos da página atual
+  const getPaginatedCollections = () => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return filteredCollections.slice(startIndex, endIndex);
+  };
+
+  // Função para buscar artigos
+  const fetchCollections = async (query) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(
+        `https://api.openalex.org/works?search=${encodeURIComponent(query)}&filter=is_oa:true`
+      );
+      if (!response.ok) {
+        throw new Error("Erro ao buscar dados da API.");
+      }
+      const data = await response.json();
+      setCollections(data.results || []);
+      setFilteredCollections(data.results || []); // Inicializa o filtro com todas as coleções
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Função de pesquisa
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchFilter.trim() !== '') {
+      router.push(`/acervo?query=${encodeURIComponent(searchFilter.trim())}`); // Atualiza a URL com a nova busca
+    }
+  };
+
   useEffect(() => {
     carregarFavoritos(); // Carrega favoritos ao montar o componente
   }, []);
 
   useEffect(() => {
     if (query) {
-      const fetchCollections = async () => {
-        setIsLoading(true);
-        setError(null);
-        try {
-          const response = await fetch(
-            `https://api.openalex.org/works?search=${encodeURIComponent(query)}&filter=is_oa:true` // OA filter
-          );
-          if (!response.ok) {
-            throw new Error("Erro ao buscar dados da API.");
-          }
-          const data = await response.json();
-          setCollections(data.results || []);
-        } catch (err) {
-          setError(err.message);
-        } finally {
-          setIsLoading(false);
-        }
-      };
-      fetchCollections();
+      setSearchFilter(query); // Define o valor de pesquisa com base na URL
+      fetchCollections(query); // Carrega os dados com o query inicial
     }
   }, [query]);
 
+  const totalPages = Math.ceil(filteredCollections.length / itemsPerPage); // Total de páginas
+
   return (
-    <div className="w-full px-6 py-8 bg-gray-100 min-h-screen">
+    <div className="w-full px-6 py-8 bg-gray-50 min-h-screen">
       <main className="max-w-5xl mx-auto">
         <h1 className="text-3xl font-extrabold text-center text-blue-600 mb-8">
-          Resultados da Pesquisa para "<span className="italic">{query}</span>"
+          Resultados da Pesquisa para "<span className="italic">{searchFilter}</span>"
         </h1>
+
+        {/* Barra de pesquisa */}
+        <div className="mb-6">
+          <form onSubmit={handleSearch} className="flex justify-center">
+            <input
+              type="text"
+              placeholder="Pesquise por título ou autor..."
+              value={searchFilter}
+              onChange={(e) => setSearchFilter(e.target.value)}
+              className="w-3/4 sm:w-1/2 p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+              type="submit"
+              className="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-all"
+            >
+              Buscar
+            </button>
+          </form>
+        </div>
 
         {isLoading ? (
           <p className="text-center text-lg">Carregando...</p>
         ) : error ? (
-          <p className="text-center text-red-500">{`Erro: ${error}`}</p>
-        ) : collections.length > 0 ? (
-          <div className="space-y-6">
-            {collections.map((collection, index) => {
-              const isFavorite = favorites.some(fav => fav.id === collection.id); // Verifica se o artigo é favorito
+          <p className="text-center text-red-500">{error}</p>
+        ) : filteredCollections.length > 0 ? (
+          <div className="space-y-8">
+            {getPaginatedCollections().map((collection) => {
+              const isFavorite = favorites.some(fav => fav.id === collection.id);
               return (
                 <div
-                  key={collection.id || index}
-                  className="bg-white shadow-lg rounded-lg p-6 border border-gray-300 hover:shadow-2xl transition-all"
+                  key={collection.id}
+                  className="bg-white rounded-lg shadow-md p-6 transition-all transform hover:scale-105"
                 >
                   <div className="flex justify-between items-center mb-4">
                     <h3 className="text-xl font-bold text-gray-800">
@@ -129,8 +174,8 @@ const Acervo = () => {
                     <button
                       onClick={() => toggleFavorite(collection)}
                       className={`${
-                        isFavorite ? "text-yellow-400" : "text-gray-400"
-                      } hover:text-yellow-500 text-2xl transition-all`}
+                        isFavorite ? "text-yellow-500" : "text-gray-500"
+                      } hover:text-yellow-700 transition-all`}
                     >
                       <FaStar />
                     </button>
@@ -140,8 +185,26 @@ const Acervo = () => {
             })}
           </div>
         ) : (
-          <p className="text-center text-lg text-gray-600">Nenhum resultado encontrado.</p>
+          <p className="text-center text-lg">Nenhum resultado encontrado.</p>
         )}
+
+        <div className="flex justify-between items-center mt-8">
+          <button
+            onClick={() => setCurrentPage(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-lg disabled:bg-gray-300 transition-all"
+          >
+            Anterior
+          </button>
+          <span className="text-lg font-semibold">{`Página ${currentPage} de ${totalPages}`}</span>
+          <button
+            onClick={() => setCurrentPage(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-lg disabled:bg-gray-300 transition-all"
+          >
+            Próxima
+          </button>
+        </div>
       </main>
     </div>
   );
