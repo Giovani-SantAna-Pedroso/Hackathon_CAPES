@@ -46,6 +46,9 @@ const Administrativo = () => {
         <button className={styles.treinamento} aria-label="Treinamentos cursados">
           Treinamento cursados
         </button>
+        <button className={styles.treinamento} aria-label="Treinamentos cursados">
+          Localize unidades
+        </button>
         <br />
         <h2 className={styles.titleDados}>Dados pessoais</h2>
 
