@@ -5,12 +5,15 @@ import styles from "./app.module.css";
 
 export default function Infos() {
     const [favorites, setFavorites] = useState([]); // Estado para controlar os favoritos
+
     const toggleFavorite = (index) => {
         setFavorites((prevFavorites) => {
             if (prevFavorites.includes(index)) {
-                return prevFavorites.filter((item) => item !== index); // Remove do favoritos se já estiver
+                // Remove do favoritos se já estiver
+                return prevFavorites.filter((item) => item !== index);
             } else {
-                return [...prevFavorites, index]; // Adiciona aos favoritos
+                // Adiciona aos favoritos se não estiver
+                return [...prevFavorites, index];
             }
         });
     };
