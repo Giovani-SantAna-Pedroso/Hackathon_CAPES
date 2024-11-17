@@ -20,12 +20,18 @@ export default function Home() {
         {/* Text Section */}
         <div className="w-full lg:w-2/5 text-center lg:text-left">
           <h1 className="text-blue-600 font-extrabold text-2xl sm:text-3xl lg:text-5xl leading-tight mb-4 sm:mb-6">
-          Portal CAPES: Acelerando a Pesquisa no Brasil
+            Portal CAPES: Acelerando a Pesquisa no Brasil
           </h1>
           <p className="text-base sm:text-lg leading-relaxed text-gray-700">
-          O Portal CAPES é uma plataforma dedicada ao fortalecimento da educação e pesquisa no Brasil, oferecendo acesso a uma vasta gama de recursos acadêmicos e científicos. Desde 1951, a CAPES tem sido um pilar para a formação de profissionais qualificados e o desenvolvimento de conhecimento inovador em diversas áreas do saber.
+            O Portal CAPES é uma plataforma dedicada ao fortalecimento da
+            educação e pesquisa no Brasil, oferecendo acesso a uma vasta gama de
+            recursos acadêmicos e científicos. Desde 1951, a CAPES tem sido um
+            pilar para a formação de profissionais qualificados e o
+            desenvolvimento de conhecimento inovador em diversas áreas do saber.
           </p>
-          <button className="btn btn-primary mt-6">Clicar para ver quem somos, ver FAQ</button>
+          <button className="btn btn-primary mt-6">
+            Clicar para ver quem somos, ver FAQ
+          </button>
         </div>
 
         {/* Image Section */}
@@ -44,7 +50,18 @@ export default function Home() {
         {/*   <ChatBot /> */}
         {/* </div> */}
       </div>
-      <iframe width="560" height="300" src="https://www.youtube.com/embed/AjUgJJnuNRY?si=vuFw4E8F-FrBWbMx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <div className="flex mt-6 justify-center items-center">
+        <iframe
+          width="1012"
+          height="600"
+          src="https://www.youtube.com/embed/AjUgJJnuNRY?si=vuFw4E8F-FrBWbMx"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
       <br></br>
     </div>
   );
