@@ -5,12 +5,13 @@ import styles from "./LoginGove.module.css";
 
 const LoginGove = () => {
   const router = useRouter();
+  const [cpf, setCpf] = useState("123.456.789-00");
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     // Redireciona para outra página
-    router.push(`/LoginGove/Usuario`); // Inclui CPF na query string
+    router.push(`/Usuario`);
   };
 
   return (
@@ -30,7 +31,7 @@ const LoginGove = () => {
             type="text"
             placeholder="Digite seu CPF"
             className={styles.input}
-            value={cpf}
+            value={"123.456.78"}
             onChange={(e) => setCpf(e.target.value)} // Atualiza o estado do CPF
           />
           <button type="submit" className={styles.button}>

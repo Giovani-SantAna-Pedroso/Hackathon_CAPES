@@ -39,7 +39,7 @@ const BarraGovBr = () => {
     <div className="bg-white">
       {showModal && <ModalLogin setShowModal={handleModal} />}
       <div className="container mx-auto">
-        <div className="flex items-center justify-between py-2">
+        <div className="flex items-center justify-between py-7 ">
           {/* Logo e Nome do Órgão */}
           <div className="flex items-center space-x-4">
             <div className="flex">
@@ -118,7 +118,7 @@ const BarraGovBr = () => {
               <li>
                 <button
                   onClick={handleEntrar}
-                  className=" bg-blue-[##f8f8f8] text-[#1351b4] py-2 px-4 text-sm rounded-full hover:text-[#f8f8f8] hover:bg-[#1351b4] flex items-center space-x-2"
+                  className=" bg-white-500  text-[#1351b4] py-2 px-4 text-sm rounded-full hover:text-[#f8f8f8] hover:bg-[#1351b4] flex items-center space-x-2"
                 >
                   {user == null ? (
                     <>

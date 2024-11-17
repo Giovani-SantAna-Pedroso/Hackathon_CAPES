@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import React, { createContext, useContext, useState } from "react";
+// import React, { createContext, useContext, useState } from "react";
 
 export const ColetaLinkDeSite = `
 # Preciso de uma ajuda, faça o papel de um site de busca,
@@ -14,28 +14,28 @@ export const VAlidaTexto = `
 resuma esse texto e valide as informações, me retorne o resumo dos artigos destaque os pontos principais em um paragrafo:
 `;
 
-export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-
-  const login = (userData) => {
-    setUser(userData); // Set the user data
-  };
-
-  const logout = () => {
-    setUser(null); // Clear the user data
-  };
-
-  return (
-    <UserContext.Provider value={{ user, login, logout }}>
-      {children}
-    </UserContext.Provider>
-  );
-};
-
-export const useUser = () => {
-  const context = useContext(UserContext);
-  if (!context) {
-    throw new Error("useUser must be used within a UserProvider");
-  }
-  return context;
-};
+// export const UserProvider = ({ children }) => {
+//   const [user, setUser] = useState(null);
+//
+//   const login = (userData) => {
+//     setUser(userData); // Set the user data
+//   };
+//
+//   const logout = () => {
+//     setUser(null); // Clear the user data
+//   };
+//
+//   return (
+//     <UserContext.Provider value={{ user, login, logout }}>
+//       {children}
+//     </UserContext.Provider>
+//   );
+// };
+//
+// export const useUser = () => {
+//   const context = useContext(UserContext);
+//   if (!context) {
+//     throw new Error("useUser must be used within a UserProvider");
+//   }
+//   return context;
+// };

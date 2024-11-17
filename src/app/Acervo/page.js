@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation"; // useRouter e useSearchParams
 import { FaLockOpen, FaLock, FaDownload, FaStar, FaSearch } from "react-icons/fa"; // React Icons
 
@@ -44,7 +44,7 @@ const Acervo = () => {
     setError(null);
     try {
       const response = await fetch(
-        `https://api.openalex.org/works?search=${encodeURIComponent(query)}&filter=is_oa:true`
+        `https://api.openalex.org/works?search=${encodeURIComponent(query)}&filter=is_oa:true`,
       );
       if (!response.ok) {
         throw new Error("Erro ao buscar dados da API.");
@@ -83,7 +83,8 @@ const Acervo = () => {
     <div className="w-full px-6 py-8 bg-gray-50 min-h-screen">
       <main className="max-w-5xl mx-auto">
         <h1 className="text-3xl font-extrabold text-center text-blue-600 mb-8">
-          Resultados da Pesquisa para "<span className="italic">{searchFilter}</span>"
+          Resultados da Pesquisa para &quot;
+          <span className="italic">{searchFilter}</span>&quot;
         </h1>
 
         {/* Barra de pesquisa */}
