@@ -11,6 +11,8 @@
   }
   
   .containerDashboard {
+    display: flex;
+    flex-direction: column;
     color: #fff;
     height: 100%;
     background: linear-gradient(270deg, rgb(96, 96, 186), rgb(39, 39, 148), rgb(138, 138, 220));
@@ -32,6 +34,9 @@
   .regiao,
   .graduacao,
   .baixados {
+    margin: 0 auto;
+    width: 900px;
+
     color: black;
     text-align: center;
     padding: 15px;

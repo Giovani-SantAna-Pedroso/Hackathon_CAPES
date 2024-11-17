@@ -146,7 +146,7 @@ const Dashboard = () => {
 
       {/* Outros Gráficos */}
       <div className={styles.baixados}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "end" }}>
           <div>
             <h3 className={styles.titleDash}>Artigos Mais Baixados</h3>
             <BarChart width={600} height={300} data={data.maisBaixados}>
