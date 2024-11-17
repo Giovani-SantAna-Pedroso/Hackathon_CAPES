@@ -1,31 +1,34 @@
 "use client";
 import React, { useState } from "react";
-import { urlTSS } from "@/app/utils/urls";
+import { urlTSS } from "@/app/utils/urls"; // Certifique-se que urlTSS está definida corretamente
 import axios from "axios";
 
 function BotaoGetAudio({ text }) {
   const [audioSrc, setAudioSrc] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleButton = async () => {
     setIsLoading(true);
-    console.log("url auido:", urlTSS);
-    console.log("text");
+    setError(null);
     try {
       const response = await axios.post(
         urlTSS + "/synthesize",
-        { text: text },
+        { text: text.substring(0, 1000) },
         {
           responseType: "blob",
           headers: {
             "Content-Type": "application/json",
           },
-        },
+        }
       );
       const audioURL = URL.createObjectURL(response.data);
       setAudioSrc(audioURL);
     } catch (e) {
-      console.log(e);
+      console.error("Error generating audio:", e);
+      setError("Erro ao gerar áudio. Tente novamente mais tarde.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -36,9 +39,11 @@ function BotaoGetAudio({ text }) {
           <source src={audioSrc} type="audio/mpeg" />
           Seu navegador não suporta o elemento de áudio.
         </audio>
+      ) : error ? (
+        <p className="text-red-500">{error}</p>
       ) : (
         <button onClick={handleButton} className="btn btn-primary">
-          {!isLoading ? "Escutar audio" : "Carregando..."}
+          {!isLoading ? "Escutar áudio" : "Carregando..."}
         </button>
       )}
     </div>
