@@ -13,8 +13,8 @@ const GovBar = () => {
   };
 
   return (
-    <div className="bg-white px-6 shadow-md">
-      <div className="container mx-auto">
+    <div className=" bg-white px-6 shadow-md">
+      <div className="flex justify-between container mx-auto">
         <div className="flex items-center justify-between py-4">
           {/* Logo e título */}
           <div className="flex items-center space-x-4">
