@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { IoIosSearch } from "react-icons/io";
 import { Poppins } from "next/font/google";
@@ -8,6 +8,7 @@ import {
   MdOutlineKeyboardDoubleArrowDown as ArrowDown,
 } from "react-icons/md";
 import AdvancedSearch from "./AdvancedSearch";
+import ModalLogin from "../components/ModalLogin";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -17,9 +18,20 @@ const poppins = Poppins({
 function Hero() {
   const [inputValue, setInputValue] = useState("");
   const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
+
+  const [showModal, setShowModal] = useState(false);
   const router = useRouter();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem("user"));
+    setUser(userInfo);
+  }, []);
 
   const handleSearch = () => {
+    if (user == null) {
+      setShowModal(true);
+    }
     if (inputValue.trim()) {
       router.push(`/Acervo?query=${encodeURIComponent(inputValue)}`);
     }
@@ -37,6 +49,7 @@ function Hero() {
         width: "100%",
       }}
     >
+      {showModal && <ModalLogin setShowModal={setShowModal} />}
       <h1 className="text-2xl lg:text-3xl text-white text-center font-extrabold leading-snug px-6">
         Aqui você encontra conteúdo científico diversificado <br />
         para deixar sua pesquisa ainda melhor

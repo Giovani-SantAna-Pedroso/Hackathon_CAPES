@@ -4,11 +4,11 @@ import { useRouter } from "next/navigation"; // Para navegação
 import styles from "./LoginGove.module.css";
 
 const LoginGove = () => {
-
   const router = useRouter();
+  const [cpf, setCpf] = useState("");
 
   const handleSubmit = (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
 
     // Redireciona para outra página
     router.push(`/LoginGove/Usuario`); // Inclui CPF na query string

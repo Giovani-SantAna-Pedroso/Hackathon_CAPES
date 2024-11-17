@@ -1,6 +1,12 @@
+import { logIn } from "@/app/utils/urls";
 import React from "react";
 
 function ModalLogin({ setShowModal }) {
+  const handleLogin = (e) => {
+    e.preventDefault();
+    logIn();
+  };
+
   return (
     <div
       onClick={() => setShowModal(false)}
@@ -31,7 +37,7 @@ function ModalLogin({ setShowModal }) {
             Faça seu Cadastro no Portal{" "}
             <span className="text-blue-500">Capes</span>
           </h2>
-          <form className="flex flex-col">
+          <form onSubmit={handleLogin} className="flex flex-col">
             {/* Email Field */}
             <label htmlFor="email" className="text-gray-600 mb-2">
               Email
