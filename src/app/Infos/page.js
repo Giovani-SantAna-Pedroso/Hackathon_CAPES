@@ -1,45 +1,59 @@
 "use client";
 
-import React from "react";
-import styles from "./app.module.css"; // Certifique-se de que o app.module.css está na mesma pasta.
+import React, { useState } from "react";
+import styles from "./app.module.css";
 
 export default function Infos() {
+    const [favorites, setFavorites] = useState([]); // Estado para controlar os favoritos
+
+    const toggleFavorite = (index) => {
+        setFavorites((prevFavorites) => {
+            if (prevFavorites.includes(index)) {
+                // Remove do favoritos se já estiver
+                return prevFavorites.filter((item) => item !== index);
+            } else {
+                // Adiciona aos favoritos se não estiver
+                return [...prevFavorites, index];
+            }
+        });
+    };
+
     const informativos = [
         {
             title: "Pesquisas em Ciências de Alimentos são destaques em publicação",
             date: "14/11/2024",
             description: "Textos constam do Journal of Food Science e são resultados de estudos realizados no Brasil, Argenti ...",
-            image: "", // Substitua pela URL da imagem ou importe diretamente
+            image: "https://www.periodicos.capes.gov.br/images/Matria_Journal.png", // Substitua pela URL da imagem ou importe diretamente
         },
         {
             title: "CAPES e Elsevier premiam 15 cientistas mulheres",
             date: "07/11/2024",
             description: "São três vencedoras em cada região do País; em relação às áreas, são cinco de Exatas, cinco ...",
-            image: "",
+            image: "https://www.periodicos.capes.gov.br/images/news/Matria_Cerimnia_CAPES_Elsevier.png",
         },
         {
             title: "Treinamento discute publicação de artigo na Biochemical Society",
             date: "06/11/2024",
             description: "Evento promovido pela PortlandPress acontece quinta-feira às 11h ...",
-            image: "",
+            image: "https://www.periodicos.capes.gov.br/images/news/Matria_Biochemical_Society.png",
         },
         {
             title: "Análise Textual, Design e Questões de Gênero são temas de cursos",
             date: "05/11/2024",
             description: "Treinamento será nos dias 6, 14 e 18 de novembro ...",
-            image: "",
+            image: "https://www.periodicos.capes.gov.br/images/news/Treinamentos_novembro_2024.png",
         },
         {
             title: "Cerimônia de premiação para mulheres ocorre na quarta-feira",
             date: "05/11/2024",
             description: "Solenidade terá início às 14h e será realizada no auditório da CAPES, com transmissão ao vivo ...",
-            image: "",
+            image: "https://www.periodicos.capes.gov.br/images/news/Matria_CAPES_Elsevier.png",
         },
         {
             title: "Premiação reconhece pesquisadoras de todo o Brasil",
             date: "29/10/2024",
             description: "As 15 cientistas selecionadas foram destaque nas áreas de Exatas, Médicas e Humanas ...",
-            image: "",
+            image: "https://www.periodicos.capes.gov.br/images/news/Prmio_Capes_Elsevier_2024.png",
         },
     ];
 
@@ -107,7 +121,15 @@ export default function Infos() {
                             <h3>{info.title}</h3>
                             <p>{info.description}</p>
                             <span>{info.date}</span>
-                            <button className={styles.button}>Leia mais</button>
+                            <div className={styles.actions}>
+                                <button className={styles.button}>Leia mais</button>
+                                <button
+                                    className={`${styles.starButton} ${favorites.includes(index) ? styles.active : styles.inactive}`}
+                                    onClick={() => toggleFavorite(index)}
+                                >
+                                    ★
+                                </button>
+                            </div>
                         </div>
                     </div>
                 ))}

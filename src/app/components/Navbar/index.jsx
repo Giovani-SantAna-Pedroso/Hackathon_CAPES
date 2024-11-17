@@ -7,7 +7,7 @@ function Navbar() {
     { name: "Sobre", url: "/Sobre" },
     { name: "Acervo", url: "/Acervo" },
     { name: "Perguntas Frequentes", url: "/Ajuda" },
-    { name: "Informativos", url: "Informativos" },
+    { name: "Informativos", url: "Infos" },
   ];
 
   return (

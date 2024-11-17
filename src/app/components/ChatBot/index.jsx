@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
-const URL_AI = "http://localhost:3000/api/ai/gemini/sendChatAText";
+const URL_AI = "/api/ai/gemini/sendChatAText";
 // const URL_AI = "http://localhost:3000/api/coletalinks_route";
 
 const ChatBot = () => {
@@ -63,17 +63,17 @@ const ChatBot = () => {
       });
 
       if (!response.ok) {
+        const data = await response.json();
+        console.log(data);
         throw new Error("Erro ao processar a solicitação");
       }
 
       const data = await response.json();
       console.log(data);
 
-      if (data && data.response) {
-        const botResponse = data.response;
+      if (data && data.text) {
+        const botResponse = data.text;
         console.log("Resposta do bot:", botResponse);
-
-        setMessages((prev) => [...prev, { type: "bot", text: botResponse }]);
 
         setMessages((prev) => [...prev, { type: "bot", text: botResponse }]);
       } else {
