@@ -131,7 +131,7 @@
 /* Botão Estrela */
 .starButton {
     background-color: transparent;
-    color: #ffcc00; /* Cor padrão da estrela */
+    color: gray; /* Cor padrão da estrela */
     font-size: 35px;
     border: none;
     cursor: pointer;
@@ -146,5 +146,5 @@
 }
 
 .starButton.active {
-    color: gray; /* Cor quando ativo (favoritado) */
+    color: #ffcc00; /* Cor quando ativo (favoritado) */
 }
