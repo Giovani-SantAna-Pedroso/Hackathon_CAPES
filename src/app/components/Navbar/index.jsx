@@ -18,19 +18,21 @@ function Navbar() {
       {/* Logo */}
       <div className="mb-4 sm:mb-0">
         <Link className="flex items-center flex-row" href={"/"}>
+        
           <Image
             src={"/Logo_capes.png"}
-            width={120} // Ajusta o tamanho do logo para dispositivos menores
+            width={160} // Ajusta o tamanho do logo para dispositivos menores
             height={120}
             alt="Logo CAPES"
             className="hover:scale-105 transition-transform duration-300"
           />
+        
           <Image
             src={"/periodicos.png"}
-            width={140} // Ajusta o tamanho do logo para dispositivos menores
-            height={10}
+            width={200} // Ajusta o tamanho do logo para dispositivos menores
+            height={50}
             alt="Logo CAPES"
-            className="flex-none h-[40px]"
+            className="flex-none h-[40px] ml-[35px]"
           />
         </Link>
       </div>
