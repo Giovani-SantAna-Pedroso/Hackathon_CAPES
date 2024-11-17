@@ -11,6 +11,15 @@ import ContainerArticles from "./ContainerArticles";
 import CardArticle from "./CardArticles";
 
 function Usuario() {
+  const [contentArticle, setContentArticle] = useState([
+    {
+      img: "",
+      id: 0,
+      description: "",
+    },
+  ]);
+
+
   const usuario = "Kleber";
 
   // Navegação lateral
