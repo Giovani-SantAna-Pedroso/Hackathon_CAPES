@@ -9,6 +9,7 @@ import CardArticle from "./CardArticles";
 import { useEffect, useState } from "react";
 import { synthesizeText } from "../api/synthesize/routes";
 import { GoGraph } from "react-icons/go";
+import SideBar from "./SideBar";
 
 function Usuario() {
   const [contentArticle, setContentArticle] = useState([
@@ -57,28 +58,13 @@ function Usuario() {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-gray-100 via-blue-50 to-gray-200 px-8 py-6">
-      <h1 className="text-blue-600 font-extrabold text-5xl text-center py-8">
+      <h1 className="text-left text-blue-600 font-extrabold text-5xl  py-8 mb-8">
         {`Olá ${usuario}, seja bem-vindo`}
       </h1>
 
       <div className="flex flex-row">
         {/* Navegação lateral */}
-        <ol className="text-blue-500 font-medium mr-16 w-1/4 space-y-6 bg-white p-6 rounded-lg shadow-md">
-          {itemNavegation.map((item) => (
-            <li
-              key={item.name}
-              className="hover:text-blue-700 transition-colors"
-            >
-              <Link href={item.link}>
-                <span className="flex flex-row items-center gap-3">
-                  <span className="text-2xl">{item.icon}</span>
-                  {item.name}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ol>
-
+        <SideBar />
         {/* Artigos */}
         <div className="w-3/4">
           <h2 className="text-blue-600 font-bold text-3xl mb-4">

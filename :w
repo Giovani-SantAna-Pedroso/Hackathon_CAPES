@@ -54,7 +54,7 @@ export default function Ajuda() {
           <div
             tabIndex={0}
             key={question.question}
-            className="collapse collapse-arrow border-2 mb-2 "
+            className="collapse collapse-arrow border mb-2 "
           >
             <input type="checkbox" className="peer" />
             <div className="collapse-title text-xl font-medium  ">
