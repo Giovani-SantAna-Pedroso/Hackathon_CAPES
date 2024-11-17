@@ -21,11 +21,15 @@ function Usuario() {
 
   const usuario = "Kleber";
   const itemNavegation = [
-    { name: "Home", link: "#", icon: <IoHomeOutline /> },
-    { name: "Minhas Pesquisas", link: "#", icon: <MdHistory /> },
+    { name: "Home", link: "/Usuario", icon: <IoHomeOutline /> },
+    {
+      name: "Minhas Pesquisas",
+      link: "/Usuario/favoritos",
+      icon: <MdHistory />,
+    },
     { name: "Descobrir", link: "#", icon: <TbClick /> },
-    { name: "Perfil", link: "#", icon: <IoPersonOutline /> },
     { name: "Dashboard", link: "dashboard", icon: <GoGraph /> },
+    { name: "Perfil", link: "/Administrativo", icon: <IoPersonOutline /> },
   ];
 
   const articlesLendo = [

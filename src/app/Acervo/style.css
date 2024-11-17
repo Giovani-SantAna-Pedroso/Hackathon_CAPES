@@ -222,3 +222,19 @@ label {
     color: white;
     border-color: #0056b3;
 }
+
+.collection-download-link {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-top: 10px;
+    background-color: #34b5df;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  
+  .collection-download-link:hover {
+    background-color: #0288d1;
+  }
+  

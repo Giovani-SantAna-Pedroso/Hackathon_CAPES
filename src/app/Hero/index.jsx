@@ -29,12 +29,12 @@ function Hero() {
   }, []);
 
   const handleSearch = () => {
-    if (user == null) {
-      setShowModal(true);
-    }
-    // if (inputValue.trim()) {
-    //   router.push(`/Acervo?query=${encodeURIComponent(inputValue)}`);
+    // if (user == null) {
+    //   setShowModal(true);
     // }
+    if (inputValue.trim()) {
+      router.push(`/Acervo?query=${encodeURIComponent(inputValue)}`);
+    }
   };
 
   return (

@@ -47,19 +47,6 @@ export default function Ajuda() {
             </>
           ))}
         </div>
-        <div className="filter-section">
-          <label className="custom-checkbox">
-            {" "}
-            <span className="count"></span>
-          </label>
-          <hr />
-          <label className="custom-checkbox">
-            <span className="count"></span>
-          </label>
-          <hr />
-          <label className="custom-checkbox"> </label>
-        </div>
-        <hr />
       </aside>
       {/* Main Content */}
       <main className="content">
@@ -68,13 +55,13 @@ export default function Ajuda() {
           <div
             tabIndex={0}
             key={question.question}
-            className="collapse collapse-arrow border-base-300 bg-base-200 border mb-2"
+            className="collapse collapse-arrow border-base-300 text-white border mb-2 bg-[#1c1c5e]"
           >
             <input type="checkbox" className="peer" />
-            <div className="collapse-title text-xl font-medium  bg-blue1">
+            <div className="collapse-title text-xl font-medium  ">
               {question.question}
             </div>
-            <div className="collapse-content  bg-gray2">
+            <div className="collapse-content  ">
               <p>{question.answer}</p>
             </div>
           </div>
