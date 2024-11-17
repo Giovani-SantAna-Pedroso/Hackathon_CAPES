@@ -8,6 +8,7 @@ import ContainerArticles from "./ContainerArticles";
 import CardArticle from "./CardArticles";
 import { useEffect, useState } from "react";
 import { synthesizeText } from "../api/synthesize/routes";
+import { GoGraph } from "react-icons/go";
 
 function Usuario() {
   const [contentArticle, setContentArticle] = useState([
@@ -24,6 +25,7 @@ function Usuario() {
     { name: "Minhas Pesquisas", link: "#", icon: <MdHistory /> },
     { name: "Descobrir", link: "#", icon: <TbClick /> },
     { name: "Perfil", link: "#", icon: <IoPersonOutline /> },
+    { name: "Dashboard", link: "dashboard", icon: <GoGraph /> },
   ];
 
   const articlesLendo = [

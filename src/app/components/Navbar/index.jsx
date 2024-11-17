@@ -40,9 +40,9 @@ function Navbar() {
       {/* Botão */}
       <div className="mt-4 sm:mt-0">
         <Link href={"/Usuario"}>
-          <button className="text-white bg-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200">
-            Acessar meu CAPES
-          </button>
+          {/* <button className="text-white bg-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200"> */}
+          {/*   Acessar meu CAPES */}
+          {/* </button> */}
         </Link>
       </div>
     </div>

@@ -32,9 +32,9 @@ function Hero() {
     if (user == null) {
       setShowModal(true);
     }
-    if (inputValue.trim()) {
-      router.push(`/Acervo?query=${encodeURIComponent(inputValue)}`);
-    }
+    // if (inputValue.trim()) {
+    //   router.push(`/Acervo?query=${encodeURIComponent(inputValue)}`);
+    // }
   };
 
   return (

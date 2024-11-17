@@ -9,6 +9,7 @@ export const logIn = () => {
   };
 
   localStorage.setItem("user", JSON.stringify(user));
+  localStorage.setItem("user", JSON.stringify(user));
 };
 
 export const logOut = () => {

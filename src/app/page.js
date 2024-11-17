@@ -42,9 +42,9 @@ export default function Home() {
         </div>
 
         {/* ChatBot Section */}
-        <div className="w-full mt-6 lg:mt-0">
-          <ChatBot />
-        </div>
+        {/* <div className="w-full mt-6 lg:mt-0"> */}
+        {/*   <ChatBot /> */}
+        {/* </div> */}
       </div>
     </div>
   );

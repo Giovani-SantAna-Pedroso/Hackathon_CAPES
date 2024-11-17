@@ -5,10 +5,12 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import ModalLogin from "../ModalLogin";
 import { logOut } from "@/app/utils/urls";
+import { useRouter } from "next/navigation";
 
 const BarraGovBr = () => {
   const [showModal, setShowModal] = useState(false);
   const [user, setUser] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem("user"));
@@ -23,13 +25,14 @@ const BarraGovBr = () => {
   };
 
   const handleEntrar = () => {
-    if (user == null) {
-      setShowModal(true);
-      return;
-    }
-    logOut();
-    const userInfo = JSON.parse(localStorage.getItem("user"));
-    setUser(userInfo);
+    router.push("LoginGove");
+    // if (user == null) {
+    //   setShowModal(true);
+    //   return;
+    // }
+    // logOut();
+    // const userInfo = JSON.parse(localStorage.getItem("user"));
+    // setUser(userInfo);
   };
 
   return (
