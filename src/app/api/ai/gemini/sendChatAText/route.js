@@ -6,9 +6,9 @@ const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-8b" });
 export const POST = async (req, res) => {
   const { message } = await req.json();
   console.log(message);
-  try {
-    const response = { type: "", text: "jasfdf jas", error: null };
 
+  const response = { type: "", text: "jasfdf jas", error: null };
+  try {
     const result = await model.generateContent([
       "Aja como um agente de suporte da instituição CAPES, e de respostas curtas para essa mensagem: " +
         message,
