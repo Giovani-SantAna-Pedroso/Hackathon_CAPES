@@ -119,7 +119,7 @@ export default function Infos() {
                         {/* Conteúdo */}
                         <div className={styles.content}>
                             <h3>{info.title}</h3>
-                            <p>{info.description}</p>
+                            <p className="p">{info.description}</p>
                             <span>{info.date}</span>
                             <div className={styles.actions}>
                                 <button className={styles.button}>Leia mais</button>

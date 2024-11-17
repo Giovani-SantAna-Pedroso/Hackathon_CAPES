@@ -1,83 +1,52 @@
+.containerDashboard {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  background: linear-gradient(270deg, rgb(96, 96, 186), rgb(39, 39, 148), rgb(138, 138, 220));
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+  padding: 20px;
+
+  margin: 0 auto; /* Centraliza horizontalmente */
+}
+
+.h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 colunas */
+  gap: 20px; /* Espaçamento entre os itens */
+}
+
+.gridItem {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.titleDash {
+  background-color: rgb(96, 96, 186);
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
 @keyframes gradientAnimation {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+  0% {
+    background-position: 0% 50%;
   }
-  
-  .containerDashboard {
-    display: flex;
-    flex-direction: column;
-    color: #fff;
-    height: 100%;
-    background: linear-gradient(270deg, rgb(96, 96, 186), rgb(39, 39, 148), rgb(138, 138, 220));
-    background-size: 400% 400%;
-    animation: gradientAnimation 10s ease infinite;
-    padding: 20px;
+  50% {
+    background-position: 100% 50%;
   }
-  
-  .h2 {
-    font-size: 3rem;
-    padding: 25px;
-    text-align: center;
-    margin-bottom: 25px;
+  100% {
+    background-position: 0% 50%;
   }
-  
-  .plataforma,
-  .instituicaoDeEnsino,
-  .estados,
-  .regiao,
-  .graduacao,
-  .baixados {
-    margin: 0 auto;
-    width: 900px;
-
-    color: black;
-    text-align: center;
-    padding: 15px;
-    margin-bottom: 25px;
-    border-radius: 15px;
-    font-size: 1.2rem;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-.plataforma:hover,
-.instituicaoDeEnsino:hover,
-.estados:hover,
-.regiao:hover,
-.graduacao:hover,
-.baixados:hover {
-  transform: scale(1.01); /* Aumenta o tamanho em 5% */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra mais forte */
 }
-
-.titleDash{
-    background-color:rgb(96, 96, 186) ;
-    padding: 5px;
-    color: #fff;
-    border-radius: 5px 5px 0 0;
-    box-shadow: 1px 0px 2px rgb(96, 96, 186);
-    width: 100%;
-}
-  .summaryBox {
-    margin-left: 20px;
-    text-align: center;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .summaryValue {
-    font-size: 2rem;
-    font-weight: bold;
-    color: rgb(241, 163, 18);
-  }
-  
