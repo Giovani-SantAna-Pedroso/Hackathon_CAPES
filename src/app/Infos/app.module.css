@@ -119,10 +119,17 @@
   margin-bottom: 10px;
 }
 
+<<<<<<< HEAD
 .content p {
   font-size: 14px;
   color: #555;
   margin-bottom: 15px;
+=======
+.content .p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+>>>>>>> 65f0f77507e2b93a65dda7923b91f9150f2c3d15
 }
 
 .content span {
