@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
 const URL_AI = "http://localhost:3000/api/ai/gemini/sendChatAText";
 // const URL_AI = "http://localhost:3000/api/coletalinks_route";
@@ -23,7 +24,12 @@ const ChatBot = () => {
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       setTimeout(() => {
-        setMessages([{ type: "bot", text: "Olá, como posso ajudar?" }]);
+        setMessages([
+          {
+            type: "bot",
+            text: "Olá, sou a IA do suporte da CAPES, como posso te ajudar",
+          },
+        ]);
       }, 1000);
     }
   }, [isOpen]);
@@ -63,8 +69,8 @@ const ChatBot = () => {
       const data = await response.json();
       console.log(data);
 
-      if (data && data.text) {
-        const botResponse = data.text;
+      if (data && data.response) {
+        const botResponse = data.response;
         console.log("Resposta do bot:", botResponse);
 
         setMessages((prev) => [...prev, { type: "bot", text: botResponse }]);
@@ -109,12 +115,16 @@ const ChatBot = () => {
         }`}
         onClick={!isOpen ? toggleChat : undefined}
       >
-        {!isOpen && <div>Chat</div>}
+        {!isOpen && (
+          <div className="text-2xl">
+            <IoChatbubbleEllipsesOutline />
+          </div>
+        )}
 
         {isOpen && (
           <div className="flex flex-col h-full p-4">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-lg font-bold">Fala com Capezinho</h2>
+              <h2 className="text-lg font-bold">Fale com o suporte</h2>
               <button
                 className="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition"
                 onClick={closeChat}

@@ -2,28 +2,51 @@
 import { IoPerson } from "react-icons/io5";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModalLogin from "../ModalLogin";
+import { logOut } from "@/app/utils/urls";
+import { useRouter } from "next/navigation";
 
 const BarraGovBr = () => {
   const [showModal, setShowModal] = useState(false);
+  const [user, setUser] = useState(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem("user"));
+    setUser(userInfo);
+    console.log("user", userInfo);
+  }, []);
+
+  const handleModal = (state) => {
+    setShowModal(state);
+    const userInfo = JSON.parse(localStorage.getItem("user"));
+    setUser(userInfo);
+  };
 
   const handleEntrar = () => {
-    setShowModal(true);
+    router.push("LoginGove");
+    // if (user == null) {
+    //   setShowModal(true);
+    //   return;
+    // }
+    // logOut();
+    // const userInfo = JSON.parse(localStorage.getItem("user"));
+    // setUser(userInfo);
   };
 
   return (
     <div className="bg-white">
-      {showModal && <ModalLogin setShowModal={setShowModal} />}
+      {showModal && <ModalLogin setShowModal={handleModal} />}
       <div className="container mx-auto">
         <div className="flex items-center justify-between py-2">
           {/* Logo e Nome do Órgão */}
           <div className="flex items-center space-x-4">
             <div className="flex">
               <a href="https://www.gov.br" target="_blank" className="block">
-                <Image
+                <img
                   className="rounded-lg "
-                  src="/Gov.br_logo.svg.png"
+                  src="https://www.gov.br/++theme++padrao_govbr/img/govbr-logo-medium.png"
                   alt="Placeholder image"
                   width={100}
                   height={50}
@@ -97,8 +120,14 @@ const BarraGovBr = () => {
                   onClick={handleEntrar}
                   className=" bg-blue-[##f8f8f8] text-[#1351b4] py-2 px-4 text-sm rounded-full hover:text-[#f8f8f8] hover:bg-[#1351b4] flex items-center space-x-2"
                 >
-                  <IoPerson />
-                  <span>Entrar</span>
+                  {user == null ? (
+                    <>
+                      <IoPerson />
+                      <span>Entrar</span>
+                    </>
+                  ) : (
+                    <>{user.name} sair</>
+                  )}
                 </button>
               </li>
             </ul>
