@@ -1,7 +1,7 @@
-'use client';
+"use client";
 import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation"; // useRouter e useSearchParams
-import { FaLockOpen, FaDownload, FaStar } from "react-icons/fa"; // React Icons
+import { FaLockOpen, FaLock, FaDownload, FaStar, FaSearch } from "react-icons/fa"; // React Icons
 
 const Acervo = () => {
   const router = useRouter();
@@ -14,35 +14,31 @@ const Acervo = () => {
   const [favorites, setFavorites] = useState([]); // Estado para armazenar favoritos
   const [searchFilter, setSearchFilter] = useState(query || ""); // Filtro de pesquisa
   const [currentPage, setCurrentPage] = useState(1); // Página atual
+  const [showInstitutions, setShowInstitutions] = useState(null); // Estado para exibir instituições
   const itemsPerPage = 5; // Número de artigos por página
 
-  // Função para carregar os favoritos do localStorage
   const carregarFavoritos = () => {
     const favoritosSalvos = JSON.parse(localStorage.getItem("favoritos")) || [];
     setFavorites(favoritosSalvos);
   };
 
-  // Função para favoritar ou desfavoritar um artigo
   const toggleFavorite = (collection) => {
     setFavorites((prevFavorites) => {
-      const updatedFavorites = prevFavorites.some(fav => fav.id === collection.id)
-        ? prevFavorites.filter(fav => fav.id !== collection.id)
-        : [...prevFavorites, collection]; // Adiciona ou remove o artigo
+      const updatedFavorites = prevFavorites.some((fav) => fav.id === collection.id)
+        ? prevFavorites.filter((fav) => fav.id !== collection.id)
+        : [...prevFavorites, collection];
 
-      // Salva os favoritos no localStorage
       localStorage.setItem("favoritos", JSON.stringify(updatedFavorites));
       return updatedFavorites;
     });
   };
 
-  // Função para pegar os artigos da página atual
   const getPaginatedCollections = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     return filteredCollections.slice(startIndex, endIndex);
   };
 
-  // Função para buscar artigos
   const fetchCollections = async (query) => {
     setIsLoading(true);
     setError(null);
@@ -63,26 +59,25 @@ const Acervo = () => {
     }
   };
 
-  // Função de pesquisa
   const handleSearch = (e) => {
     e.preventDefault();
-    if (searchFilter.trim() !== '') {
+    if (searchFilter.trim() !== "") {
       router.push(`/acervo?query=${encodeURIComponent(searchFilter.trim())}`); // Atualiza a URL com a nova busca
     }
   };
 
   useEffect(() => {
-    carregarFavoritos(); // Carrega favoritos ao montar o componente
+    carregarFavoritos();
   }, []);
 
   useEffect(() => {
     if (query) {
-      setSearchFilter(query); // Define o valor de pesquisa com base na URL
-      fetchCollections(query); // Carrega os dados com o query inicial
+      setSearchFilter(query);
+      fetchCollections(query);
     }
   }, [query]);
 
-  const totalPages = Math.ceil(filteredCollections.length / itemsPerPage); // Total de páginas
+  const totalPages = Math.ceil(filteredCollections.length / itemsPerPage);
 
   return (
     <div className="w-full px-6 py-8 bg-gray-50 min-h-screen">
@@ -116,8 +111,10 @@ const Acervo = () => {
           <p className="text-center text-red-500">{error}</p>
         ) : filteredCollections.length > 0 ? (
           <div className="space-y-8">
-            {getPaginatedCollections().map((collection) => {
-              const isFavorite = favorites.some(fav => fav.id === collection.id);
+            {getPaginatedCollections().map((collection, index) => {
+              const isOpenAccess = index % 2 === 0; // Alterna entre Acesso Aberto e Restrito
+              const isFavorite = favorites.some((fav) => fav.id === collection.id);
+
               return (
                 <div
                   key={collection.id}
@@ -127,17 +124,43 @@ const Acervo = () => {
                     <h3 className="text-xl font-bold text-gray-800">
                       {collection.title || "Sem título"}
                     </h3>
-                    <div className="flex items-center">
-                      <div className="bg-green-200 text-green-800 px-3 py-1 rounded flex items-center">
-                        <FaLockOpen className="mr-2" />
-                        <span>Acesso aberto</span>
-                      </div>
+                    <div
+                      className={`${
+                        isOpenAccess
+                          ? "bg-green-200 text-green-800"
+                          : "bg-red-200 text-red-800"
+                      } px-3 py-1 rounded flex items-center`}
+                    >
+                      {isOpenAccess ? (
+                        <>
+                          <FaLockOpen className="mr-2" />
+                          <span>Acesso aberto</span>
+                        </>
+                      ) : (
+                        <>
+                          <FaLock className="mr-2" />
+                          <span>Acesso restrito</span>
+                          <button
+                            className="ml-2 text-blue-600 hover:text-blue-800"
+                            onClick={() =>
+                              setShowInstitutions(
+                                showInstitutions === collection.id
+                                  ? null
+                                  : collection.id
+                              )
+                            }
+                          >
+                            <FaSearch />
+                          </button>
+                        </>
+                      )}
                     </div>
                   </div>
 
                   <p className="text-gray-600 text-sm mb-2">
                     <strong>Autor:</strong>{" "}
-                    {collection.authorships?.map(author => author.author.display_name).join(", ") || "Desconhecido"}
+                    {collection.authorships?.map((author) => author.author.display_name).join(", ") ||
+                      "Desconhecido"}
                   </p>
                   <p className="text-gray-600 text-sm mb-4">
                     <strong>Publicado em:</strong>{" "}
@@ -149,6 +172,19 @@ const Acervo = () => {
                       ? collection.abstract.substring(0, 200) + "..."
                       : "Sem resumo disponível."}
                   </p>
+
+                  {showInstitutions === collection.id && (
+                    <div className="mt-4 border-t border-gray-300 pt-4">
+                      <h4 className="text-lg font-bold text-gray-800 mb-2">
+                        Instituições com acesso:
+                      </h4>
+                      <ul className="list-disc list-inside text-gray-700">
+                        <li>Universidade A</li>
+                        <li>Universidade B</li>
+                        <li>Instituto C</li>
+                      </ul>
+                    </div>
+                  )}
 
                   <div className="flex justify-between items-center mt-4">
                     <a
