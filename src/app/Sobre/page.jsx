@@ -14,8 +14,11 @@ export default function Sobre() {
           {/* Texto */}
           <div className="md:w-2/3">
             <p className="text-gray-800 leading-relaxed mb-4">
-              O <strong className="text-blue-700">Portal de Periódicos da CAPES</strong> reúne e
-              disponibiliza conteúdos produzidos nacionalmente e outros
+              O{" "}
+              <strong className="text-blue-700">
+                Portal de Periódicos da CAPES
+              </strong>{" "}
+              reúne e disponibiliza conteúdos produzidos nacionalmente e outros
               assinados com editoras internacionais a instituições de ensino e
               pesquisa no Brasil. São milhões de periódicos científicos de texto
               completo e conteúdos diversos.
