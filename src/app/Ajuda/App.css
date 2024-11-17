@@ -1,0 +1,100 @@
+/* Estilos globais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.faq-container {
+    display: flex;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 20px 80px;
+    background-color: #f1f5fb;
+}
+
+.filter-title {
+    color: #000;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    height: 600px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar h3 {
+    font-size: 16px;
+    margin-bottom: 20px;
+    
+}
+
+.custom-checkbox {
+    color: blue;
+    cursor: pointer;
+} 
+
+.customize-button {
+    align-items: center;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-list li {
+    margin-bottom: 10px;
+    /* color: #007bff; */
+    cursor: pointer;
+}
+
+.menu-list li:hover {
+    text-decoration: underline;
+}
+
+/* Main content */
+.content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f8f9fa;
+    margin-left: 35px;
+}
+
+.content h1 {
+    margin-left: 10px;
+    height: 50px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.question {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.question-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+}
+
+.question-btn:hover {
+    /* color: #007bff; */
+}
+
+.answer {
+    margin-top: 10px;
+    color: #666;
+    font-size: 14px;
+}
