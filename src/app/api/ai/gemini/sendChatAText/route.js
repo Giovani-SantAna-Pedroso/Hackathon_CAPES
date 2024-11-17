@@ -3,19 +3,22 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 // const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-8b" });
 
-const URL = "http://localhost:3000/";
 export const POST = async (req, res) => {
   const { message } = await req.json();
   console.log(message);
-  const response = { type: "", text: "jasfdf jas" };
 
-  const result = await model.generateContent([
-    "Aja como um agente de suporte da instituição CAPES, e de respostas curtas para essa mensagem: " +
-      message,
-  ]);
+  const response = { type: "", text: "jasfdf jas", error: null };
+  try {
+    const result = await model.generateContent([
+      "Aja como um agente de suporte da instituição CAPES, e de respostas curtas para essa mensagem: " +
+        message,
+    ]);
 
-  response.type = "generic";
-  response.text = result.response.text();
+    response.type = "generic";
+    response.text = result.response.text();
+  } catch (e) {
+    response.error = e;
+  }
 
   // if (response.type == "ir para página\n") {
   //   const result = await model.generateContent([

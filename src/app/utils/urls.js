@@ -15,3 +15,7 @@ export const logIn = () => {
 export const logOut = () => {
   localStorage.setItem("user", JSON.stringify(null));
 };
+
+export const getUser = () => {
+  return JSON.parse(localStorage.getItem("user"));
+};
