@@ -1,53 +1,28 @@
-import BotaoGetAudio from "@/app/components/BotaoGetAudio";
-import axios from "axios";
-import Image from "next/image";
-import React, { useState } from "react";
-
-function CardArticle({
-  id,
-  img,
-  conteudo,
-  // audioSrc,
-  title = "Título do Artigo",
-}) {
-  const handleTestButton = () => {
-    console.log("test");
-    console.log(conteudo);
-  };
-
+function CardArticle({ id, img, title, authors, publishedDate, description }) {
   return (
-    <div className="flex flex-col md:flex-row bg-gray-800 text-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 w-full">
-      {/* Imagem */}
-      <div className="relative w-full md:w-1/3 h-64 md:h-auto">
-        <Image
-          src={img}
-          alt="Imagem do artigo"
-          layout="fill"
-          objectFit="cover"
-          className="rounded-l-lg"
-        />
-      </div>
-
-      {/* Conteúdo */}
-      <div className="flex flex-col justify-between w-full p-6 md:w-2/3">
-        {/* Título e ID */}
-        <div className="mb-4">
-          <p className="text-gray-400 text-sm uppercase tracking-wider mb-2">
-            Artigo #{id}
-          </p>
-          <h2 className="text-xl md:text-2xl font-bold text-blue-400 mb-2">
-            {title}
-          </h2>
-          <p className="text-gray-300 leading-relaxed text-sm md:text-base">
-            {conteudo}
-          </p>
-        </div>
-
-        {/* Player de áudio */}
-        {/* {audioSrc && ( */}
-        <div className="mt-4">
-          <BotaoGetAudio text={conteudo} />
-        </div>
+    <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+      <img
+        src={img}
+        alt={title}
+        className="w-full h-40 object-cover rounded-md mb-4"
+      />
+      <h2 className="text-lg font-bold text-blue-600 mb-2">{title}</h2>
+      <p className="text-sm text-gray-700 mb-2">
+        <span className="font-semibold">Autor:</span> {authors}
+      </p>
+      <p className="text-sm text-gray-700 mb-4">
+        <span className="font-semibold">Publicado em:</span> {publishedDate}
+      </p>
+      <p className="text-gray-600 mb-6">
+        {description || "Sem resumo disponível."}
+      </p>
+      <div className="flex gap-4">
+        <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-200">
+          Acessar
+        </button>
+        <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-200">
+          Escutar áudio
+        </button>
       </div>
     </div>
   );

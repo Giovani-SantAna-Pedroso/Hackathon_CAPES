@@ -4,23 +4,16 @@ import { MdHistory } from "react-icons/md";
 import { TbClick } from "react-icons/tb";
 import { IoPersonOutline } from "react-icons/io5";
 import Link from "next/link";
-import ContainerArticles from "./ContainerArticles";
-import CardArticle from "./CardArticles";
 import { useEffect, useState } from "react";
-import { synthesizeText } from "../api/synthesize/routes";
 import { GoGraph } from "react-icons/go";
 import SideBar from "./SideBar";
+import ContainerArticles from "./ContainerArticles";
+import CardArticle from "./CardArticles";
 
 function Usuario() {
-  const [contentArticle, setContentArticle] = useState([
-    {
-      img: "",
-      id: 0,
-      description: "",
-    },
-  ]);
-
   const usuario = "Kleber";
+
+  // Navegação lateral
   const itemNavegation = [
     { name: "Home", link: "/Usuario", icon: <IoHomeOutline /> },
     {
@@ -33,40 +26,68 @@ function Usuario() {
     { name: "Perfil", link: "/Administrativo", icon: <IoPersonOutline /> },
   ];
 
+  // Dados de "Continuar Lendo"
   const articlesLendo = [
     {
-      img: "/placeholder1.png",
-      id: 22,
-      description: "Explorando o futuro da ciência e tecnologia.",
+      id: 1,
+      img: "/pela.webp",
+      title: "O Negro no Futebol Brasileiro",
+      authors: "Christian Ferreira Mackedanz, Elaine Tonini Ferreira, Gabriel Gomes da Silva",
+      publishedDate: "2021-06-30",
+      description: "Sem resumo disponível.",
     },
     {
-      img: "/placeholder1.png",
-      id: 21,
-      description: "A importância da pesquisa científica no Brasil.",
+      id: 2,
+      img: "/energia.jpeg",
+      title: "A evolução da energia sustentável",
+      authors: "Mariana Silva, José Souza",
+      publishedDate: "2023-05-12",
+      description: "Como a energia sustentável tem impactado o mundo moderno.",
     },
     {
-      img: "/placeholder1.png",
-      id: 24,
-      description: "Como as novas tecnologias estão mudando a educação.",
+      id: 3,
+      img: "/ia.webp",
+      title: "Inteligência Artificial na Educação",
+      authors: "Ana Clara, Roberto Lima",
+      publishedDate: "2024-01-22",
+      description: "Explorando o impacto da IA no ensino e aprendizado.",
+    },
+  ];
+
+  // Dados de "Recomendados"
+  const articlesRecomendados = [
+    {
+      id: 4,
+      img: "/empresa.jfif",
+      title: "Transformação digital nas empresas",
+      authors: "João Carlos, Marina Alves",
+      publishedDate: "2022-11-11",
+      description: "A importância da transformação digital no mundo corporativo.",
     },
     {
-      img: "/placeholder1.png",
-      id: 25,
-      description: "Tendências em pesquisa acadêmica para 2025.",
+      id: 5,
+      img: "/Mudancas-Climaticas.jpg",
+      title: "Mudanças climáticas: desafios globais",
+      authors: "Paula Mendes, Ricardo Silva",
+      publishedDate: "2023-08-21",
+      description: "Como o mundo está enfrentando os desafios das mudanças climáticas.",
     },
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-gray-100 via-blue-50 to-gray-200 px-8 py-6">
-      <h1 className="text-left text-blue-600 font-extrabold text-5xl  py-8 mb-8">
+      {/* Saudação */}
+      <h1 className="text-left text-blue-600 font-extrabold text-5xl py-8 mb-8">
         {`Olá ${usuario}, seja bem-vindo`}
       </h1>
 
       <div className="flex flex-row">
         {/* Navegação lateral */}
         <SideBar />
-        {/* Artigos */}
+
+        {/* Conteúdo principal */}
         <div className="w-3/4">
+          {/* Seção Continuar Lendo */}
           <h2 className="text-blue-600 font-bold text-3xl mb-4">
             Continuar lendo
           </h2>
@@ -75,20 +96,34 @@ function Usuario() {
               <div key={article.id} className="my-6">
                 <CardArticle
                   id={article.id}
-                  conteudo={article.description}
-                  audioSrc={`public/audio/${article.id}audio.mp3`}
                   img={article.img}
+                  title={article.title}
+                  authors={article.authors}
+                  publishedDate={article.publishedDate}
+                  description={article.description}
                 />
               </div>
             ))}
           </ContainerArticles>
 
+          {/* Seção Recomendados */}
           <h2 className="text-blue-600 font-bold text-3xl mt-12 mb-4">
             Recomendados
           </h2>
-          <p className="text-gray-700">
-            Nenhum conteúdo recomendado no momento.
-          </p>
+          <ContainerArticles>
+            {articlesRecomendados.map((article) => (
+              <div key={article.id} className="my-6">
+                <CardArticle
+                  id={article.id}
+                  img={article.img}
+                  title={article.title}
+                  authors={article.authors}
+                  publishedDate={article.publishedDate}
+                  description={article.description}
+                />
+              </div>
+            ))}
+          </ContainerArticles>
         </div>
       </div>
     </div>
