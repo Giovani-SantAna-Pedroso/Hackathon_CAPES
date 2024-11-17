@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
-const URL_AI = "http://localhost:3000/api/ai/gemini/sendChatAText";
+const URL_AI = "/api/ai/gemini/sendChatAText";
 // const URL_AI = "http://localhost:3000/api/coletalinks_route";
 
 const ChatBot = () => {
