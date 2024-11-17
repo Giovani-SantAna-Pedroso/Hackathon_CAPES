@@ -113,8 +113,8 @@ const Acervo = () => {
     <div className="w-full px-6 py-8 bg-white min-h-screen">
       <main className="max-w-5xl mx-auto">
         <h1 className="text-3xl font-extrabold text-[#003060] mb-8">
-          Resultados da Pesquisa para "
-          <span className="italic">{searchFilter}</span>"
+          Resultados da Pesquisa para &quot;
+          <span className="italic">{searchFilter}</span>&quot;
         </h1>
 
         <div className="mb-6">
