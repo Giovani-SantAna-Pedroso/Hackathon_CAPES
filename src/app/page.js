@@ -20,25 +20,22 @@ export default function Home() {
         {/* Text Section */}
         <div className="w-full lg:w-2/5 text-center lg:text-left">
           <h1 className="text-blue-600 font-extrabold text-2xl sm:text-3xl lg:text-5xl leading-tight mb-4 sm:mb-6">
-            Lorem Ipsum
+          Portal CAPES: Acelerando a Pesquisa no Brasil
           </h1>
           <p className="text-base sm:text-lg leading-relaxed text-gray-700">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry&aposs standard dummy
-            text ever since the 1500s, when an unknown printer took a galley of
-            type and scrambled it to make.
+          O Portal CAPES é uma plataforma dedicada ao fortalecimento da educação e pesquisa no Brasil, oferecendo acesso a uma vasta gama de recursos acadêmicos e científicos. Desde 1951, a CAPES tem sido um pilar para a formação de profissionais qualificados e o desenvolvimento de conhecimento inovador em diversas áreas do saber.
           </p>
+          <button className="btn btn-primary mt-6">Clicar para ver quem somos, ver FAQ</button>
         </div>
-        <p>Clicar para ver quem somos, ver FAQ</p>
 
         {/* Image Section */}
         <div className="w-full lg:w-3/5 flex justify-center lg:justify-end mb-6 lg:mb-0">
           <Image
             className="rounded-lg shadow-lg max-w-full"
-            src="/placeholder1.png"
+            src="/imagem_do_capes.png"
             alt="Placeholder image"
-            width={500}
-            height={500}
+            width={550}
+            height={550}
           />
         </div>
 
@@ -47,6 +44,8 @@ export default function Home() {
         {/*   <ChatBot /> */}
         {/* </div> */}
       </div>
+      <iframe width="560" height="300" src="https://www.youtube.com/embed/AjUgJJnuNRY?si=vuFw4E8F-FrBWbMx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <br></br>
     </div>
   );
 }
