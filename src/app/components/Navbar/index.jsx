@@ -17,8 +17,10 @@ function Navbar() {
     <div className="bg-white flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6 py-4 shadow-md">
       {/* Logo */}
       <div className="mb-4 sm:mb-0">
-        <Link className="flex items-center flex-row" href={"/"}>
-        
+        <Link
+          className="flex items-center justify-center flex-col md:flex-row"
+          href={"/"}
+        >
           <Image
             src={"/Logo_capes.png"}
             width={160} // Ajusta o tamanho do logo para dispositivos menores
@@ -26,7 +28,7 @@ function Navbar() {
             alt="Logo CAPES"
             className="hover:scale-105 transition-transform duration-300"
           />
-        
+
           <Image
             src={"/periodicos.png"}
             width={200} // Ajusta o tamanho do logo para dispositivos menores

@@ -1,150 +1,177 @@
 .container {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
+  display: flex;
+  gap: 20px;
+  padding: 20px;
 }
 
 /* Sidebar */
 .sidebar {
-    width: 250px;
-    border-right: 1px solid #ccc;
-    padding: 20px; /* Adicionado padding interno */
-    background-color: #fff; /* Fundo branco */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adicionada leve sombra para destaque */
-    border-radius: 8px; /* Borda arredondada para suavizar o design */
+  width: 250px;
+  border-right: 1px solid #ccc;
+  padding: 20px; /* Adicionado padding interno */
+  background-color: #fff; /* Fundo branco */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adicionada leve sombra para destaque */
+  border-radius: 8px; /* Borda arredondada para suavizar o design */
+}
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+  }
 }
 
 .sidebar h2 {
-    font-size: 20px; /* Aumentado para maior destaque */
-    margin-bottom: 20px;
-    color: #333; /* Cor mais escura para contraste */
-    text-align: center; /* Centralizado */
-    font-weight: bold; /* Negrito para maior destaque */
+  font-size: 20px; /* Aumentado para maior destaque */
+  margin-bottom: 20px;
+  color: #333; /* Cor mais escura para contraste */
+  text-align: center; /* Centralizado */
+  font-weight: bold; /* Negrito para maior destaque */
 }
 
 .searchInput {
-    width: 100%;
-    padding: 12px; /* Aumentado para maior conforto */
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 6px; /* Borda suavizada */
-    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra interna */
+  width: 100%;
+  padding: 12px; /* Aumentado para maior conforto */
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px; /* Borda suavizada */
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra interna */
 }
 
 .filters {
-    display: flex;
-    flex-direction: column;
-    gap: 12px; /* Espaçamento uniforme entre os itens */
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Espaçamento uniforme entre os itens */
 }
 
 .filters label {
-    font-size: 14px;
-    color: #555; /* Cor sutil */
-    cursor: pointer; /* Cursor de clique */
+  font-size: 14px;
+  color: #555; /* Cor sutil */
+  cursor: pointer; /* Cursor de clique */
 }
 
 .filters input[type="checkbox"] {
-    margin-right: 10px; /* Espaço entre checkbox e texto */
+  margin-right: 10px; /* Espaço entre checkbox e texto */
 }
 
 /* Informativos */
 .informativos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  flex: 1;
+}
+
+@media (max-width: 1024px) {
+  .informativos {
+    grid-template-columns: repeat(2, 1fr); /* Reduz para 2 colunas */
+    gap: 16px; /* Ajusta o espaçamento */
+  }
+}
+
+@media (max-width: 768px) {
+  .informativos {
+    grid-template-columns: repeat(1, 1fr); /* Apenas 1 coluna */
+    gap: 12px; /* Espaçamento menor */
+  }
 }
 
 /* Cartão de informativo */
 .card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden;
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: #fff; /* Fundo branco */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adicionada sombra */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff; /* Fundo branco */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adicionada sombra */
 }
 
 .imagePlaceholder {
-    height: 300px; /* Aumentado para deixar maior */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f4f4f4; /* Cor neutra para destacar as imagens */
-    border-bottom: 1px solid #ccc; /* Linha para separar a imagem do conteúdo */
+  height: 300px; /* Aumentado para deixar maior */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f4; /* Cor neutra para destacar as imagens */
+  border-bottom: 1px solid #ccc; /* Linha para separar a imagem do conteúdo */
 }
 
 .image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Garante que a imagem seja ajustada proporcionalmente */
-    border-radius: 4px; /* Deixa os cantos suavizados */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Garante que a imagem seja ajustada proporcionalmente */
+  border-radius: 4px; /* Deixa os cantos suavizados */
 }
 
 .content {
-    padding: 15px;
-    background-color: #fff; /* Alterado para branco */
+  padding: 15px;
+  background-color: #fff; /* Alterado para branco */
 }
 
 .content h3 {
-    font-size: 16px;
-    margin-bottom: 10px;
+  font-size: 16px;
+  margin-bottom: 10px;
 }
 
 .content p {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 15px;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
 }
 
 .content span {
-    display: block;
-    font-size: 12px;
-    color: #888;
-    margin-bottom: 15px;
+  display: block;
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 15px;
 }
 
 .button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    text-align: center; /* Alinhado ao centro */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center; /* Alinhado ao centro */
 }
 
 .button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 /* Ações (Botões) */
 .actions {
-    display: flex;
-    gap: 10px;
-    align-items: center;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 /* Botão Estrela */
 .starButton {
-    background-color: transparent;
-    color: gray; /* Cor padrão da estrela */
-    font-size: 35px;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s, color 0.2s;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+  background-color: transparent;
+  color: gray; /* Cor padrão da estrela */
+  font-size: 35px;
+  border: none;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    color 0.2s;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
 
 .starButton:hover {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .starButton.active {
-    color: #ffcc00; /* Cor quando ativo (favoritado) */
+  color: #ffcc00; /* Cor quando ativo (favoritado) */
 }
