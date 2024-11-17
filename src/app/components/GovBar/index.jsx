@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import ModalLogin from "../ModalLogin";
-import { logOut } from "@/app/utils/urls";
+import { getUser, logOut } from "@/app/utils/urls";
 import { useRouter } from "next/navigation";
 
 const BarraGovBr = () => {
@@ -13,30 +13,30 @@ const BarraGovBr = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const userInfo = JSON.parse(localStorage.getItem("user"));
+    const userInfo = getUser();
     setUser(userInfo);
     console.log("user", userInfo);
   }, []);
 
   const handleModal = (state) => {
     setShowModal(state);
-    const userInfo = JSON.parse(localStorage.getItem("user"));
+    const userInfo = getUser();
     setUser(userInfo);
   };
 
   const handleEntrar = () => {
+    const userInfo = getUser();
+    if (userInfo !== null) {
+      logOut();
+      router.push("/");
+    }
     router.push("LoginGove");
-    // if (user == null) {
-    //   setShowModal(true);
-    //   return;
-    // }
-    // logOut();
-    // const userInfo = JSON.parse(localStorage.getItem("user"));
-    // setUser(userInfo);
   };
 
+  const hangleLogin = () => {};
+
   return (
-    <div className="bg-white">
+    <div className="bg-white px-6">
       {showModal && <ModalLogin setShowModal={handleModal} />}
       <div className="container mx-auto">
         <div className="flex items-center justify-between py-7 ">
@@ -126,7 +126,7 @@ const BarraGovBr = () => {
                       <span>Entrar</span>
                     </>
                   ) : (
-                    <>{user.name} sair</>
+                    <>Olá {user.name} sair</>
                   )}
                 </button>
               </li>

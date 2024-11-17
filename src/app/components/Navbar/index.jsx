@@ -7,20 +7,28 @@ function Navbar() {
     { name: "Sobre", url: "/Sobre" },
     { name: "Acervo", url: "/Acervo" },
     { name: "Perguntas Frequentes", url: "/Ajuda" },
-    { name: "Informativos", url: "Infos" },
+    { name: "Informativos", url: "/Infos" },
+    { name: "Noticias", url: "/NewsSearch" },
   ];
 
   return (
     <div className="bg-white flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6 py-4 shadow-md">
       {/* Logo */}
       <div className="mb-4 sm:mb-0">
-        <Link href={"/"}>
+        <Link className="flex flex-row" href={"/"}>
           <Image
             src={"/Logo_capes.png"}
             width={120} // Ajusta o tamanho do logo para dispositivos menores
             height={120}
             alt="Logo CAPES"
             className="hover:scale-105 transition-transform duration-300"
+          />
+          <Image
+            src={"/periodicos.png"}
+            width={440} // Ajusta o tamanho do logo para dispositivos menores
+            height={10}
+            alt="Logo CAPES"
+            className="flex-none"
           />
         </Link>
       </div>

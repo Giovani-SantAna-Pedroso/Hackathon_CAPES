@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation"; // Para navegação
 import styles from "./LoginGove.module.css";
+import { logIn } from "../utils/urls";
 
 const LoginGove = () => {
   const router = useRouter();
@@ -12,6 +13,7 @@ const LoginGove = () => {
 
     // Redireciona para outra página
     router.push(`/Usuario`);
+    logIn();
   };
 
   return (
