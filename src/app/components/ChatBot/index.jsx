@@ -63,6 +63,8 @@ const ChatBot = () => {
       });
 
       if (!response.ok) {
+        const data = await response.json();
+        console.log(data);
         throw new Error("Erro ao processar a solicitação");
       }
 
