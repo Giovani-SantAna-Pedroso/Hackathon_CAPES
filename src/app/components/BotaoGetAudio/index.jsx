@@ -20,7 +20,7 @@ function BotaoGetAudio({ text }) {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       const audioURL = URL.createObjectURL(response.data);
       setAudioSrc(audioURL);
@@ -42,7 +42,7 @@ function BotaoGetAudio({ text }) {
       ) : error ? (
         <p className="text-red-500">{error}</p>
       ) : (
-        <button onClick={handleButton} className="btn btn-primary">
+        <button onClick={handleButton} className="btn text-white  bg-[#34B5DF]">
           {!isLoading ? "Escutar áudio" : "Carregando..."}
         </button>
       )}
@@ -51,3 +51,4 @@ function BotaoGetAudio({ text }) {
 }
 
 export default BotaoGetAudio;
+
