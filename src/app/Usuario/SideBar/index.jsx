@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 import { GoGraph } from "react-icons/go";
 function SideBar() {
   const itemNavegation = [
-    { name: "Home", link: "/Usuario", icon: <IoHomeOutline /> },
     {
       name: "Pesquisas Salvas",
       link: "/Usuario/favoritos",

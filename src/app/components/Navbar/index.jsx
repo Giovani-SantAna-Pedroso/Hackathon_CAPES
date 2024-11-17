@@ -4,6 +4,7 @@ import React from "react";
 
 function Navbar() {
   const links = [
+    { name: "Home", url: "/" },
     { name: "Meu perfil", url: "/Usuario" },
     { name: "Sobre", url: "/Sobre" },
     { name: "Acervo", url: "/Acervo" },
