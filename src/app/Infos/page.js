@@ -67,7 +67,6 @@ export default function Infos() {
     },
   ];
 
-<<<<<<< HEAD
   return (
     <div className={styles.container + " flex flex-col md:flex-row w-full "}>
       {/* Barra lateral */}
@@ -107,85 +106,6 @@ export default function Infos() {
             <input type="checkbox" />
             WebTV
           </label>
-=======
-    return (
-        <div className={styles.container}>
-            {/* Barra lateral */}
-            <aside className={styles.sidebar}>
-                <h2>Informativos</h2>
-                <input
-                    type="text"
-                    placeholder="Filtrar"
-                    className={styles.searchInput}
-                />
-                <div className={styles.filters}>
-                    <label>
-                        <input type="checkbox" />
-                        Todos os assuntos
-                    </label>
-                    <label>
-                        <input type="checkbox" />
-                        Acervo
-                    </label>
-                    <label>
-                        <input type="checkbox" />
-                        Artigo
-                    </label>
-                    <label>
-                        <input type="checkbox" />
-                        Eventos
-                    </label>
-                    <label>
-                        <input type="checkbox" />
-                        Suporte
-                    </label>
-                    <label>
-                        <input type="checkbox" />
-                        Treinamentos
-                    </label>
-                    <label>
-                        <input type="checkbox" />
-                        WebTV
-                    </label>
-                </div>
-            </aside>
-
-            {/* Informativos */}
-            <main className={styles.informativos}>
-                {informativos.map((info, index) => (
-                    <div key={index} className={styles.card}>
-                        {/* Espaço da Imagem */}
-                        <div className={styles.imagePlaceholder}>
-                            {info.image ? (
-                                <img
-                                    src={info.image}
-                                    alt={info.title}
-                                    className={styles.image}
-                                />
-                            ) : (
-                                <div className={styles.noImage}>Imagem não disponível</div>
-                            )}
-                        </div>
-
-                        {/* Conteúdo */}
-                        <div className={styles.content}>
-                            <h3>{info.title}</h3>
-                            <p className="p">{info.description}</p>
-                            <span>{info.date}</span>
-                            <div className={styles.actions}>
-                                <button className={styles.button}>Leia mais</button>
-                                <button
-                                    className={`${styles.starButton} ${favorites.includes(index) ? styles.active : styles.inactive}`}
-                                    onClick={() => toggleFavorite(index)}
-                                >
-                                    ★
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </main>
->>>>>>> 65f0f77507e2b93a65dda7923b91f9150f2c3d15
         </div>
       </aside>
 
