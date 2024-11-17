@@ -15,7 +15,7 @@ function Navbar() {
     <div className="bg-white flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6 py-4 shadow-md">
       {/* Logo */}
       <div className="mb-4 sm:mb-0">
-        <Link className="flex flex-row" href={"/"}>
+        <Link className="flex items-center flex-row" href={"/"}>
           <Image
             src={"/Logo_capes.png"}
             width={120} // Ajusta o tamanho do logo para dispositivos menores
@@ -25,10 +25,10 @@ function Navbar() {
           />
           <Image
             src={"/periodicos.png"}
-            width={440} // Ajusta o tamanho do logo para dispositivos menores
+            width={140} // Ajusta o tamanho do logo para dispositivos menores
             height={10}
             alt="Logo CAPES"
-            className="flex-none"
+            className="flex-none h-[40px]"
           />
         </Link>
       </div>

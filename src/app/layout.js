@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
         >
         <BarraGovBr />
         <Navbar />
-
+        
         <FixSuspence>{children}</FixSuspence>
         <ChatBot />
         <Footer />

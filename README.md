@@ -5,7 +5,7 @@
 Execute o comando:
 
 ```bash
-npm install
+npm install --force
 ```
 
 Crie o arquivo .env como o exemplo abaixo:

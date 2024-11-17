@@ -1,7 +1,14 @@
 "use client";
 import React, { Suspense, useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation"; // useRouter e useSearchParams
-import { FaLockOpen, FaDownload, FaStar } from "react-icons/fa"; // React Icons
+import { useRouter, useSearchParams } from "next/navigation";
+import {
+  FaLockOpen,
+  FaLock,
+  FaDownload,
+  FaStar,
+  FaSearch,
+} from "react-icons/fa";
+import BotaoGetAudio from "../components/BotaoGetAudio";
 
 const Acervo = () => {
   const router = useRouter();
@@ -11,40 +18,48 @@ const Acervo = () => {
   const [filteredCollections, setFilteredCollections] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [favorites, setFavorites] = useState([]); // Estado para armazenar favoritos
-  const [searchFilter, setSearchFilter] = useState(query || ""); // Filtro de pesquisa
-  const [currentPage, setCurrentPage] = useState(1); // Página atual
-  const itemsPerPage = 5; // Número de artigos por página
+  const [favorites, setFavorites] = useState([]);
+  const [searchFilter, setSearchFilter] = useState(query || "");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [institutionName, setInstitutionName] = useState("");
+  const [availableInstitutions] = useState([
+    "Universidade de São Paulo (USP)",
+    "Universidade Estadual de Campinas (UNICAMP)",
+    "Universidade Federal do Rio de Janeiro (UFRJ)",
+    "Universidade Estadual Paulista (UNESP)",
+    "Universidade Estadual de Londrina (UEL)",
+    "Universidade de Brasília (UnB)",
+    "Universidade Estadual de Maringá (UEM)",
+    "Universidade Federal de Minas Gerais (UFMG)",
+    "Universidade Estadual do Rio de Janeiro (UERJ)",
+    "Universidade Federal do Paraná (UFPR)",
+  ]);
+  const itemsPerPage = 5;
 
-  // Função para carregar os favoritos do localStorage
   const carregarFavoritos = () => {
     const favoritosSalvos = JSON.parse(localStorage.getItem("favoritos")) || [];
     setFavorites(favoritosSalvos);
   };
 
-  // Função para favoritar ou desfavoritar um artigo
   const toggleFavorite = (collection) => {
     setFavorites((prevFavorites) => {
       const updatedFavorites = prevFavorites.some(
         (fav) => fav.id === collection.id,
       )
         ? prevFavorites.filter((fav) => fav.id !== collection.id)
-        : [...prevFavorites, collection]; // Adiciona ou remove o artigo
+        : [...prevFavorites, collection];
 
-      // Salva os favoritos no localStorage
       localStorage.setItem("favoritos", JSON.stringify(updatedFavorites));
       return updatedFavorites;
     });
   };
 
-  // Função para pegar os artigos da página atual
   const getPaginatedCollections = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     return filteredCollections.slice(startIndex, endIndex);
   };
 
-  // Função para buscar artigos
   const fetchCollections = async (query) => {
     setIsLoading(true);
     setError(null);
@@ -57,7 +72,7 @@ const Acervo = () => {
       }
       const data = await response.json();
       setCollections(data.results || []);
-      setFilteredCollections(data.results || []); // Inicializa o filtro com todas as coleções
+      setFilteredCollections(data.results || []);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -65,36 +80,43 @@ const Acervo = () => {
     }
   };
 
-  // Função de pesquisa
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchFilter.trim() !== "") {
-      router.push(`/Acervo?query=${encodeURIComponent(searchFilter.trim())}`); // Atualiza a URL com a nova busca
+      router.push(`/Acervo?query=${encodeURIComponent(searchFilter.trim())}`);
     }
   };
 
   useEffect(() => {
-    carregarFavoritos(); // Carrega favoritos ao montar o componente
+    carregarFavoritos();
   }, []);
 
   useEffect(() => {
     if (query) {
-      setSearchFilter(query); // Define o valor de pesquisa com base na URL
-      fetchCollections(query); // Carrega os dados com o query inicial
+      setSearchFilter(query);
+      fetchCollections(query);
     }
   }, [query]);
 
-  const totalPages = Math.ceil(filteredCollections.length / itemsPerPage); // Total de páginas
+  const totalPages = Math.ceil(filteredCollections.length / itemsPerPage);
+
+  const handleInstitutionCheck = (collection) => {
+    const isAvailable = availableInstitutions.includes(institutionName);
+    alert(
+      isAvailable
+        ? "O artigo está disponível na sua instituição!"
+        : "O artigo não está disponível na sua instituição.",
+    );
+  };
 
   return (
-    <div className="w-full px-6 py-8 bg-gray-50 min-h-screen">
+    <div className="w-full px-6 py-8 bg-white min-h-screen">
       <main className="max-w-5xl mx-auto">
-        <h1 className="text-3xl font-extrabold text-center text-blue-600 mb-8">
+        <h1 className="text-3xl font-extrabold text-[#003060] mb-8">
           Resultados da Pesquisa para &quot;
           <span className="italic">{searchFilter}</span>&quot;
         </h1>
 
-        {/* Barra de pesquisa */}
         <div className="mb-6">
           <form onSubmit={handleSearch} className="flex justify-center">
             <input
@@ -102,11 +124,11 @@ const Acervo = () => {
               placeholder="Pesquise por título ou autor..."
               value={searchFilter}
               onChange={(e) => setSearchFilter(e.target.value)}
-              className="w-3/4 sm:w-1/2 p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-3/4 sm:w-1/2 p-3 border border-gray-300 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-[#003060]"
             />
             <button
               type="submit"
-              className="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-all"
+              className="ml-4 bg-[#003060] hover:bg-[#34B5DF] text-white font-bold py-2 px-4 rounded-lg transition-all"
             >
               Buscar
             </button>
@@ -114,29 +136,40 @@ const Acervo = () => {
         </div>
 
         {isLoading ? (
-          <p className="text-center text-lg">Carregando...</p>
+          <p className="text-center text-lg text-[#003060]">Carregando...</p>
         ) : error ? (
           <p className="text-center text-red-500">{error}</p>
         ) : filteredCollections.length > 0 ? (
           <div className="space-y-8">
-            {getPaginatedCollections().map((collection) => {
+            {getPaginatedCollections().map((collection, index) => {
+              const isOpenAccess = index % 2 === 0;
               const isFavorite = favorites.some(
                 (fav) => fav.id === collection.id,
               );
+
               return (
                 <div
                   key={collection.id}
                   className="bg-white rounded-lg shadow-md p-6 transition-all transform hover:scale-105"
                 >
                   <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-xl font-bold text-gray-800">
+                    <h3 className="text-xl font-bold text-[#003060]">
                       {collection.title || "Sem título"}
                     </h3>
-                    <div className="flex items-center">
-                      <div className="bg-green-200 text-green-800 px-3 py-1 rounded flex items-center">
-                        <FaLockOpen className="mr-2" />
-                        <span>Acesso aberto</span>
-                      </div>
+                    <div
+                      className={`${isOpenAccess ? "bg-green-200 text-green-800" : "bg-red-200 text-red-800"} px-3 py-1 rounded flex items-center`}
+                    >
+                      {isOpenAccess ? (
+                        <>
+                          <FaLockOpen className="mr-2" />
+                          <span>Acesso aberto</span>
+                        </>
+                      ) : (
+                        <>
+                          <FaLock className="mr-2" />
+                          <span>Acesso restrito</span>
+                        </>
+                      )}
                     </div>
                   </div>
 
@@ -157,12 +190,36 @@ const Acervo = () => {
                       : "Sem resumo disponível."}
                   </p>
 
+                  {!isOpenAccess && (
+                    <div className="mt-4 p-2">
+                      <h4 className="text-lg font-bold text-[#003060] mb-2">
+                        Verifique se o artigo está disponível na sua instituição
+                      </h4>
+                      <div className="flex items-center">
+                        <input
+                          type="text"
+                          placeholder="Digite o nome da instituição"
+                          value={institutionName}
+                          onChange={(e) => setInstitutionName(e.target.value)}
+                          className="w-full sm:w-2/3 p-3 border border-gray-300 rounded-lg mr-2 focus:outline-none focus:ring-2 focus:ring-[#003060]"
+                        />
+                        <button
+                          onClick={() => handleInstitutionCheck(collection)}
+                          className="btn bg-[#34B5DF] font-bold hover:bg-[#003060] text-white"
+                          // className="bg-[#34B5DF] hover:bg-[#003060] text-white font-bold py-2 px-4 rounded-lg transition-all"
+                        >
+                          Verificar Disponibilidade
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
                   <div className="flex justify-between items-center mt-4">
                     <a
                       href={`https://doi.org/${collection.doi}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-lg transition-all"
+                      className="bg-[#34B5DF] hover:bg-[#003060] text-white font-bold py-2 px-4 rounded-lg shadow-lg transition-all"
                     >
                       Acessar
                     </a>
@@ -171,18 +228,24 @@ const Acervo = () => {
                       <a
                         href={collection.download_url}
                         download
-                        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow-lg transition-all"
+                        className="bg-[#34B5DF] hover:bg-[#003060] text-white font-bold py-2 px-4 rounded-lg shadow-lg transition-all"
                       >
                         <FaDownload className="inline-block mr-1" />
                         Baixar
                       </a>
                     )}
 
+                    <BotaoGetAudio
+                      text={
+                        collection.abstract ||
+                        collection.title ||
+                        "Sem texto para audio"
+                      }
+                    />
+
                     <button
                       onClick={() => toggleFavorite(collection)}
-                      className={`${
-                        isFavorite ? "text-yellow-500" : "text-gray-500"
-                      } hover:text-yellow-700 transition-all`}
+                      className={`${isFavorite ? "text-[#34B5DF]" : "text-gray-500"} hover:text-[#003060] transition-all`}
                     >
                       <FaStar />
                     </button>
@@ -192,24 +255,27 @@ const Acervo = () => {
             })}
           </div>
         ) : (
-          <p className="text-center text-lg">Nenhum resultado encontrado.</p>
+          <p className="text-center text-lg text-[#003060]">
+            Nenhum artigo encontrado.
+          </p>
         )}
 
-        <div className="flex justify-between items-center mt-8">
+        <div className="flex justify-center mt-8">
           <button
-            onClick={() => setCurrentPage(currentPage - 1)}
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
-            className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-lg disabled:bg-gray-300 transition-all"
+            className="bg-[#34B5DF] hover:bg-[#003060] text-white font-bold py-2 px-4 rounded-l-lg transition-all"
           >
             Anterior
           </button>
-          <span className="text-lg font-semibold">{`Página ${currentPage} de ${totalPages}`}</span>
           <button
-            onClick={() => setCurrentPage(currentPage + 1)}
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
             disabled={currentPage === totalPages}
-            className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-lg disabled:bg-gray-300 transition-all"
+            className="bg-[#34B5DF] hover:bg-[#003060] text-white font-bold py-2 px-4 rounded-r-lg transition-all"
           >
-            Próxima
+            Próximo
           </button>
         </div>
       </main>

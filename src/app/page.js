@@ -2,6 +2,7 @@ import Image from "next/image";
 import Hero from "./Hero";
 import { Poppins } from "next/font/google";
 import ChatBot from "./components/ChatBot";
+import Link from "next/link";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -30,7 +31,7 @@ export default function Home() {
             desenvolvimento de conhecimento inovador em diversas áreas do saber.
           </p>
           <button className="btn btn-primary mt-6">
-            Clicar para ver quem somos, ver FAQ
+            <Link href={"/Ajuda"}>Clicar para ver quem somos, ver FAQ</Link>
           </button>
         </div>
 
@@ -56,10 +57,10 @@ export default function Home() {
           height="600"
           src="https://www.youtube.com/embed/AjUgJJnuNRY?si=vuFw4E8F-FrBWbMx"
           title="YouTube video player"
-          frameborder="0"
+          frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
         ></iframe>
       </div>
       <br></br>
