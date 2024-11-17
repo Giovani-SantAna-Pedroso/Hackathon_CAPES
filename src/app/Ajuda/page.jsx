@@ -37,12 +37,11 @@ export default function Ajuda() {
             <div key={section}>
               <button
                 onClick={() => handelSection(section)}
-                className="custom-checkbox"
+                className="flex my-4 w-full rounded-none shadow-none text-left justify-start items-center btn  border-0 bg-transparent"
               >
                 {section}
                 <span className="count"></span>
               </button>
-              <hr />
             </div>
           ))}
         </div>

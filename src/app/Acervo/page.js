@@ -1,5 +1,5 @@
-'use client';
-import React, { useEffect, useState } from "react";
+"use client";
+import React, { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation"; // useRouter e useSearchParams
 import { FaLockOpen, FaDownload, FaStar } from "react-icons/fa"; // React Icons
 
@@ -25,8 +25,10 @@ const Acervo = () => {
   // Função para favoritar ou desfavoritar um artigo
   const toggleFavorite = (collection) => {
     setFavorites((prevFavorites) => {
-      const updatedFavorites = prevFavorites.some(fav => fav.id === collection.id)
-        ? prevFavorites.filter(fav => fav.id !== collection.id)
+      const updatedFavorites = prevFavorites.some(
+        (fav) => fav.id === collection.id,
+      )
+        ? prevFavorites.filter((fav) => fav.id !== collection.id)
         : [...prevFavorites, collection]; // Adiciona ou remove o artigo
 
       // Salva os favoritos no localStorage
@@ -48,7 +50,7 @@ const Acervo = () => {
     setError(null);
     try {
       const response = await fetch(
-        `https://api.openalex.org/works?search=${encodeURIComponent(query)}&filter=is_oa:true`
+        `https://api.openalex.org/works?search=${encodeURIComponent(query)}&filter=is_oa:true`,
       );
       if (!response.ok) {
         throw new Error("Erro ao buscar dados da API.");
@@ -66,8 +68,8 @@ const Acervo = () => {
   // Função de pesquisa
   const handleSearch = (e) => {
     e.preventDefault();
-    if (searchFilter.trim() !== '') {
-      router.push(`/acervo?query=${encodeURIComponent(searchFilter.trim())}`); // Atualiza a URL com a nova busca
+    if (searchFilter.trim() !== "") {
+      router.push(`/Acervo?query=${encodeURIComponent(searchFilter.trim())}`); // Atualiza a URL com a nova busca
     }
   };
 
@@ -88,7 +90,8 @@ const Acervo = () => {
     <div className="w-full px-6 py-8 bg-gray-50 min-h-screen">
       <main className="max-w-5xl mx-auto">
         <h1 className="text-3xl font-extrabold text-center text-blue-600 mb-8">
-          Resultados da Pesquisa para "<span className="italic">{searchFilter}</span>"
+          Resultados da Pesquisa para &quot;
+          <span className="italic">{searchFilter}</span>&quot;
         </h1>
 
         {/* Barra de pesquisa */}
@@ -117,7 +120,9 @@ const Acervo = () => {
         ) : filteredCollections.length > 0 ? (
           <div className="space-y-8">
             {getPaginatedCollections().map((collection) => {
-              const isFavorite = favorites.some(fav => fav.id === collection.id);
+              const isFavorite = favorites.some(
+                (fav) => fav.id === collection.id,
+              );
               return (
                 <div
                   key={collection.id}
@@ -137,7 +142,9 @@ const Acervo = () => {
 
                   <p className="text-gray-600 text-sm mb-2">
                     <strong>Autor:</strong>{" "}
-                    {collection.authorships?.map(author => author.author.display_name).join(", ") || "Desconhecido"}
+                    {collection.authorships
+                      ?.map((author) => author.author.display_name)
+                      .join(", ") || "Desconhecido"}
                   </p>
                   <p className="text-gray-600 text-sm mb-4">
                     <strong>Publicado em:</strong>{" "}

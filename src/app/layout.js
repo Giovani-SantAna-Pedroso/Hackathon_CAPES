@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import BarraGovBr from "./components/GovBar";
 import ChatBot from "./components/ChatBot";
+import FixSuspence from "./components/FixSuspense";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,7 +30,8 @@ export default function RootLayout({ children }) {
       >
         <BarraGovBr />
         <Navbar />
-        {children}
+
+        <FixSuspence>{children}</FixSuspence>
         <ChatBot />
         <Footer />
       </body>

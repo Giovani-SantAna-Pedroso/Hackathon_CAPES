@@ -58,6 +58,6 @@ export const perguntasAjuda = {
   ],
   "Problemas de acesso ao conteúdo do Portal": [],
   "Desenvolvimento das coleções do Portal": [],
-  "Treinamentos ": [],
+  Treinamentos: [],
   "Taxas de Processamento de Artigo no âmbito do PADICT": [],
 };

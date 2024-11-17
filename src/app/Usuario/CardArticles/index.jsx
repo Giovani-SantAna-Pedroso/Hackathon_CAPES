@@ -1,4 +1,4 @@
-import { urlTSS } from "@/app/utils/urls";
+import BotaoGetAudio from "@/app/components/BotaoGetAudio";
 import axios from "axios";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -10,29 +10,6 @@ function CardArticle({
   // audioSrc,
   title = "Título do Artigo",
 }) {
-  const [audioSrc, setAudioSrc] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleButton = async () => {
-    setIsLoading(true);
-    console.log("fdsa");
-    try {
-      const response = await axios.post(
-        "http://127.0.0.1:5000/synthesize",
-        { text: conteudo },
-        {
-          responseType: "blob",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        },
-      );
-      const audioURL = URL.createObjectURL(response.data);
-      setAudioSrc(audioURL);
-    } catch (e) {
-      console.log(e);
-    }
-  };
   const handleTestButton = () => {
     console.log("test");
     console.log(conteudo);
@@ -67,19 +44,9 @@ function CardArticle({
         </div>
 
         {/* Player de áudio */}
-
         {/* {audioSrc && ( */}
         <div className="mt-4">
-          {audioSrc ? (
-            <audio controls>
-              <source src={audioSrc} type="audio/mpeg" />
-              Seu navegador não suporta o elemento de áudio.
-            </audio>
-          ) : (
-            <button onClick={handleButton} className="btn btn-primary">
-              {!isLoading ? "Escutar audio" : "Carregando..."}
-            </button>
-          )}
+          <BotaoGetAudio text={conteudo} />
         </div>
       </div>
     </div>

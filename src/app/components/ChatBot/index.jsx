@@ -69,11 +69,9 @@ const ChatBot = () => {
       const data = await response.json();
       console.log(data);
 
-      if (data && data.response) {
-        const botResponse = data.response;
+      if (data && data.text) {
+        const botResponse = data.text;
         console.log("Resposta do bot:", botResponse);
-
-        setMessages((prev) => [...prev, { type: "bot", text: botResponse }]);
 
         setMessages((prev) => [...prev, { type: "bot", text: botResponse }]);
       } else {
