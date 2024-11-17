@@ -1,0 +1,101 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9; /* Cor de fundo clara e neutra */
+    height: 70vh;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-radius: 10px; /* Bordas arredondadas */
+}
+
+.title {
+    margin-bottom: 30px;
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: #1C1C5E;
+    text-align: center;
+}
+
+.titleDados {
+    align-self: flex-start;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.containerPerfil {
+    position: relative;
+    width: 60vw; /* Aumentar para um layout mais fluido */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Espaçamento entre botões */
+}
+
+.conta {
+    position: absolute;
+    top: -60px;
+    left: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #1C1C5E;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.conta:hover {
+    background-color: #0f0f4a; /* Cor mais escura no hover */
+}
+
+.treinamento {
+    position: absolute;
+    top: -60px;
+    left: 150px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #1C1C5E;
+    color: #1C1C5E;
+    background-color: #fff;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.treinamento:hover {
+    background-color: #1C1C5E;
+    color: #fff;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    width: 100%;
+    gap: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input {
+    background-color: #f9f9f9;
+    width: 100%;
+    border: 1px solid #1C1C5E;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.input:focus {
+    border-color: #0f0f4a;
+    outline: none;
+    box-shadow: 0 0 5px rgba(28, 28, 94, 0.5);
+}
