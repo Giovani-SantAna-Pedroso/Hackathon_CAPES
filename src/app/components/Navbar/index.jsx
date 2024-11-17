@@ -6,7 +6,7 @@ function Navbar() {
   const links = [
     { name: "Sobre", url: "/Sobre" },
     { name: "Acervo", url: "/Acervo" },
-    { name: "Treinamentos", url: "/Treinamento" },
+    { name: "Perguntas Frequentes", url: "/Ajuda" },
     { name: "Informativos", url: "Informativos" },
   ];
 

@@ -29,6 +29,7 @@ export default function Home() {
             type and scrambled it to make.
           </p>
         </div>
+        <p>Clicar para ver quem somos, ver FAQ</p>
 
         {/* Image Section */}
         <div className="w-full lg:w-3/5 flex justify-center lg:justify-end mb-6 lg:mb-0">

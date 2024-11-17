@@ -73,27 +73,27 @@ function Hero() {
           </button>
         </div>
 
-        <button
-          className="mt-4 flex items-center gap-2 text-blue-600 font-medium hover:text-blue-700 transition self-start"
-          onClick={() => setShowAdvancedSearch((current) => !current)}
-        >
-          Pesquisa Avançada {showAdvancedSearch ? <ArrowUp /> : <ArrowDown />}
-        </button>
+        {/* <button */}
+        {/*   className="mt-4 flex items-center gap-2 text-blue-600 font-medium hover:text-blue-700 transition self-start" */}
+        {/*   onClick={() => setShowAdvancedSearch((current) => !current)} */}
+        {/* > */}
+        {/*   Pesquisa Avançada {showAdvancedSearch ? <ArrowUp /> : <ArrowDown />} */}
+        {/* </button> */}
 
-        <div
-          className={`overflow-hidden transition-all duration-500 ease-in-out ${
-            showAdvancedSearch
-              ? "max-h-screen opacity-100"
-              : "max-h-0 opacity-0"
-          }`}
-        >
-          <div className="mt-4">
-            <AdvancedSearch
-              inputValue={inputValue}
-              setInputValue={setInputValue}
-            />
-          </div>
-        </div>
+        {/* <div */}
+        {/*   className={`overflow-hidden transition-all duration-500 ease-in-out ${ */}
+        {/*     showAdvancedSearch */}
+        {/*       ? "max-h-screen opacity-100" */}
+        {/*       : "max-h-0 opacity-0" */}
+        {/*   }`} */}
+        {/* > */}
+        {/*   <div className="mt-4"> */}
+        {/*     <AdvancedSearch */}
+        {/*       inputValue={inputValue} */}
+        {/*       setInputValue={setInputValue} */}
+        {/*     /> */}
+        {/*   </div> */}
+        {/* </div> */}
       </div>
     </div>
   );

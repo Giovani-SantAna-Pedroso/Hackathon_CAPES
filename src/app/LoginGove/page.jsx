@@ -5,7 +5,6 @@ import styles from "./LoginGove.module.css";
 
 const LoginGove = () => {
   const router = useRouter();
-  const [cpf, setCpf] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
