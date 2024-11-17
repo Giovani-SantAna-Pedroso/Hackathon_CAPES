@@ -7,7 +7,6 @@
     min-height: 100vh; /* Altura mínima */
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    border-radius: 10px; /* Bordas arredondadas */
     overflow: auto; /* Permitir rolagem */
   }
   
@@ -78,6 +77,7 @@
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #0f0f4a;
   }
   
   .input {
