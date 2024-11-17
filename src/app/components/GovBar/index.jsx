@@ -1,134 +1,55 @@
 "use client";
 import { IoPerson } from "react-icons/io5";
-import Link from "next/link";
-import Image from "next/image";
-import { useState, useEffect } from "react";
-import ModalLogin from "../ModalLogin";
-import { getUser, logOut } from "@/app/utils/urls";
+import { useAuth } from "@/Context/AuthContext"; // Usa o contexto
 import { useRouter } from "next/navigation";
 
-const BarraGovBr = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [user, setUser] = useState(null);
+const GovBar = () => {
+  const { user, logOut } = useAuth(); // Obtém o estado e as funções do contexto
   const router = useRouter();
 
-  useEffect(() => {
-    const userInfo = getUser();
-    setUser(userInfo);
-    console.log("user", userInfo);
-  }, []);
-
-  const handleModal = (state) => {
-    setShowModal(state);
-    const userInfo = getUser();
-    setUser(userInfo);
+  const handleSair = () => {
+    logOut(); // Faz o logout
+    router.push("/"); // Redireciona para a página inicial
   };
-
-  const handleEntrar = () => {
-    const userInfo = getUser();
-    if (userInfo !== null) {
-      logOut();
-      router.push("/");
-    }
-    router.push("LoginGove");
-  };
-
-  const hangleLogin = () => {};
 
   return (
     <div className="bg-white px-6">
-      {showModal && <ModalLogin setShowModal={handleModal} />}
       <div className="container mx-auto">
-        <div className="flex items-center justify-between py-7 ">
-          {/* Logo e Nome do Órgão */}
+        <div className="flex items-center justify-between py-7">
           <div className="flex items-center space-x-4">
-            <div className="flex">
-              <a href="https://www.gov.br" target="_blank" className="block">
-                <img
-                  className="rounded-lg "
-                  src="https://www.gov.br/++theme++padrao_govbr/img/govbr-logo-medium.png"
-                  alt="Placeholder image"
-                  width={100}
-                  height={50}
-                />
-              </a>
-            </div>
-            <div className="hidden lg:block">
-              <a
-                href="https://www.gov.br/capes"
-                target="_blank"
-                className="text-lg  text-gray-500"
-              >
-                Ministério da Educação/CAPES
-              </a>
-            </div>
+            <a href="https://www.gov.br" target="_blank" rel="noopener noreferrer">
+              <img
+                src="https://www.gov.br/++theme++padrao_govbr/img/govbr-logo-medium.png"
+                alt="Gov.br Logo"
+                width={100}
+                height={50}
+              />
+            </a>
+            <span>Ministério da Educação/CAPES</span>
           </div>
-
-          {/* Menu de Navegação */}
           <nav>
             <ul className="flex items-center space-x-6">
-              <li className="hidden lg:block">
-                <a
-                  href="https://www.gov.br/pt-br/orgaos-do-governo"
-                  target="_blank"
-                  className="text-sm text-gray-800 hover:text-gray-600"
-                >
-                  Órgãos do Governo
-                </a>
-              </li>
-              <li className="hidden lg:block">
-                <a
-                  href="https://www.gov.br/acessoainformacao/pt-br"
-                  target="_blank"
-                  className="text-sm text-gray-800 hover:text-gray-600"
-                >
-                  Acesso à Informação
-                </a>
-              </li>
-              <li className="hidden lg:block">
-                <a
-                  href="http://www4.planalto.gov.br/legislacao"
-                  target="_blank"
-                  className="text-sm text-gray-800 hover:text-gray-600"
-                >
-                  Legislação
-                </a>
-              </li>
-              <li className="hidden lg:block">
-                <a
-                  href="https://www.gov.br/governodigital/pt-br/acessibilidade-digital"
-                  target="_blank"
-                  className="text-sm text-gray-800 hover:text-gray-600"
-                >
-                  Acessibilidade
-                </a>
-              </li>
-
-              {/* Modo de Contraste */}
               <li>
-                <a
-                  className="text-sm text-gray-800 hover:text-gray-600"
-                  href="#"
-                >
-                  <i className="fas fa-adjust"></i>
-                </a>
-              </li>
+              {user ? (
+  <div className="flex items-center space-x-2">
+    <span>Olá, {user.name}</span>
+    <button
+      onClick={handleSair}
+      className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-full transition transform hover:scale-105 flex items-center space-x-2"
+    >
+      Sair
+    </button>
+  </div>
+) : (
+  <button
+    onClick={() => router.push("LoginGove")}
+    className="bg-gray-100 hover:bg-blue-500 hover:text-white text-blue-500 border-none px-4 py-2 rounded-full flex items-center space-x-2 shadow-sm transition transform hover:scale-105"
+  >
+    <IoPerson size={20} />
+    <span>Entrar</span>
+  </button>
+)}
 
-              {/* Botão de Entrar */}
-              <li>
-                <button
-                  onClick={handleEntrar}
-                  className=" bg-white-500  text-[#1351b4] py-2 px-4 text-sm rounded-full hover:text-[#f8f8f8] hover:bg-[#1351b4] flex items-center space-x-2"
-                >
-                  {user == null ? (
-                    <>
-                      <IoPerson />
-                      <span>Entrar</span>
-                    </>
-                  ) : (
-                    <>Olá {user.name} sair</>
-                  )}
-                </button>
               </li>
             </ul>
           </nav>
@@ -138,4 +59,4 @@ const BarraGovBr = () => {
   );
 };
 
-export default BarraGovBr;
+export default GovBar;

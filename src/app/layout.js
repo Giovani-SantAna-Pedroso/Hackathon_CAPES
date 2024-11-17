@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import BarraGovBr from "./components/GovBar";
 import ChatBot from "./components/ChatBot";
 import FixSuspence from "./components/FixSuspense";
+import { AuthProvider } from "@/Context/AuthContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,9 +26,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+          <AuthProvider>
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray1`}
-      >
+        >
         <BarraGovBr />
         <Navbar />
         
@@ -35,6 +38,7 @@ export default function RootLayout({ children }) {
         <ChatBot />
         <Footer />
       </body>
+        </AuthProvider>
     </html>
   );
 }

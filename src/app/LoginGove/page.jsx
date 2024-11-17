@@ -1,19 +1,31 @@
 "use client";
 import React, { useState } from "react";
-import { useRouter } from "next/navigation"; // Para navegação
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/Context/AuthContext"; // Importa o contexto
 import styles from "./LoginGove.module.css";
-import { logIn } from "../utils/urls";
 
 const LoginGove = () => {
   const router = useRouter();
-  const [cpf, setCpf] = useState("123.456.789-00");
+  const { logIn } = useAuth(); // Obtém a função logIn do contexto
+  const [cpf, setCpf] = useState("123.456.78");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Redireciona para outra página
-    router.push(`/Usuario`);
-    logIn();
+    if (!cpf) {
+      alert("Por favor, insira um CPF válido.");
+      return;
+    }
+
+    setLoading(true);
+
+    // Simula o tempo de autenticação
+    setTimeout(() => {
+      // Faz o login e define o usuário no contexto
+      logIn({ name: "Kleber Oliveira" }); // Aqui você pode ajustar com o retorno real da API
+      router.push("/Usuario");
+    }, 500); // Simula um atraso de 1,5 segundos
   };
 
   return (
@@ -33,20 +45,12 @@ const LoginGove = () => {
             type="text"
             placeholder="Digite seu CPF"
             className={styles.input}
-            value={"123.456.78"}
-            onChange={(e) => setCpf(e.target.value)} // Atualiza o estado do CPF
+            value={cpf}
+            onChange={(e) => setCpf(e.target.value)}
           />
-          <button type="submit" className={styles.button}>
-            Continuar
+          <button type="submit" className={styles.button} disabled={loading}>
+            {loading ? "Carregando..." : "Continuar"}
           </button>
-          <div className={styles.otherOptions}>
-            <p>Outras opções de identificação:</p>
-            <ul>
-              <li className={styles.loginbc}>Login com seu banco</li>
-              <li>Login com QR code</li>
-              <li>Certificado digital</li>
-            </ul>
-          </div>
         </form>
       </div>
     </div>
