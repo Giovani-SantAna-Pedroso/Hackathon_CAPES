@@ -5,7 +5,7 @@ export default function Sobre() {
     <div className="bg-gray-100">
       <main className="flex justify-center flex-col container min-h-screen mx-auto py-12 px-6">
         {/* Título */}
-        <h1 className="text-4xl font-bold text-center text-blue-700 mb-8">
+        <h1 className="text-4xl sm:text-3xl font-bold text-center text-blue-700 mb-8">
           Quem Somos
         </h1>
 
